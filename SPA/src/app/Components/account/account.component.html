@@ -1,0 +1,170 @@
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars btn-light"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="sidebar-brand">
+                <a>GRAPH4SOCIAL</a>
+                <div id="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="sidebar-header">
+                <div class="user-pic" *ngIf="this.user.avatar.toString() === 'Male'">
+                    <img class="img-responsive img-rounded " src="assets/img/avatar_male.png" alt="User picture">
+                </div>
+                <div class="user-pic" *ngIf="this.user.avatar.toString() === 'Female'">
+                    <img class="img-responsive img-rounded " src="assets/img/avatar_female.png" alt="User picture">
+                </div>
+                <div class="user-pic" *ngIf="this.user.avatar.toString() === 'Duck'">
+                    <img class="img-responsive img-rounded " src="assets/img/avatar_duck.png" alt="User picture">
+                </div>
+                <div class="user-pic" *ngIf="this.user.avatar.toString() === 'Cat'">
+                    <img class="img-responsive img-rounded " src="assets/img/avatar_cat.png" alt="User picture">
+                </div>
+                <div class="user-pic" *ngIf="this.user.avatar.toString() === 'Droid'">
+                    <img class="img-responsive img-rounded " src="assets/img/avatar_droid.png" alt="User picture">
+                </div>
+                <div class="user-pic" *ngIf="this.user.avatar.toString() === 'Statue'">
+                    <img class="img-responsive img-rounded " src="assets/img/avatar_statue.png" alt="User picture">
+                </div>
+                <div class="user-info">
+                    <span class="user-name">
+                        <strong>{{this.userName}}</strong>
+                        <span class="badge badge-pill badge-warning notification ml-3">{{this.userNetworktStrength}}</span>
+                    </span>
+                    <span class="user-role">{{this.userMood}}</span>
+                    <span class="user-status">
+                        <i class="fa fa-circle"></i>
+                        <span>Online</span>
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a routerLink="account-details">
+                            <i class="fa fa-user-edit"></i>
+                            <span>Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="feed">
+                            <i class="fa fa-rss"></i>
+                            <span>Feed</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="relationships">
+                            <i class="fa fa-user-friends"></i>
+                            <span>Friends</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="tags">
+                            <i class="fa fa-tags"></i>
+                            <span>Tags</span></a>
+                    </li>
+                    <li>
+                        <a routerLink="introduction">
+                            <i class="fa fa-exchange-alt"></i>
+                            <span>Introductions</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header-menu">
+                        <span>Sugestions</span>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a routerLink="suggestedfriends">
+                            <i class="fas fa-user-plus"></i>
+                            <span>People</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="suggested-groups">
+                            <i class="fas fa-users"></i>
+                            <span>Grupos</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header-menu">
+                        <span>Requests</span>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a routerLink="introduction-requests">
+                            <i class="fas fa-handshake"></i>
+                            <span>Introductions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="relationships-requests">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Relationships</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header-menu">
+                        <span>Social Map</span>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a routerLink="map">
+                            <i class="fa fa-globe"></i>
+                            <span>Map</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header-menu">
+                        <span>General</span>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a routerLink="user">
+                            <i class="fa fa-users"></i>
+                            <span>All Users</span>
+                            <span class="badge badge-pill badge-success">{{this.nUsers}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="leaderboards">
+                            <i class="fa fa-table"></i>
+                            <span>Leaderboards</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- sidebar-menu  -->
+        </div>
+        <!-- sidebar-content  -->
+        <div class="sidebar-footer">
+            <!--<a href="#">
+              <i class="fa fa-bell"></i>
+              <span class="badge badge-pill badge-warning notification">3</span>
+            </a>-->
+            <a routerLink="account-details">
+                <i class="fa fa-cog"></i>
+            </a>
+            <a (click)="authService.logout()">
+                <i class="fa fa-power-off"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>

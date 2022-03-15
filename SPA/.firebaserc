@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lapr5g74spa": {
+      "hosting": {
+        "SPA": [
+          "lapr5g74spa"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lapr5g74spa"
+  }
+}

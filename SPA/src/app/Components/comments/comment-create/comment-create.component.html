@@ -1,0 +1,7 @@
+<form #commentForm="ngForm" (ngSubmit)="addComment(commentForm)">
+    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+        <img class="img-fluid img-responsive rounded-circle mr-2" src="assets/img/user-profile-img.jpeg" width="38">
+        <input type="text" class="form-control mr-3" placeholder="Add comment" ngModel name="comment" id="comment">
+        <button class="btn btn-primary" type="submit">Comment</button>
+    </div>
+</form>

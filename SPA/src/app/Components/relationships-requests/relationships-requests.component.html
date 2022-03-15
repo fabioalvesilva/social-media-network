@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2>Relationships Requests</h2>
+    </div>
+    <div class="border-top"></div>
+    <div *ngIf="(!requestSent && requestSent != null)" class="alert alert-warning d-flex align-items-center mt-4">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </svg>
+        {{this.errorMessage}}
+    </div>
+    <div *ngFor="let r of this.list" class="card w-75">
+        <div class="card-body">
+            <div class="row align-items-center h-100">
+                <div class="col-3 mx-auto">
+                    <img src="assets/img/user-profile-img.jpeg" class="img-fluid w-50" alt="User Profile">
+                </div>
+                <div class="col-4 mx-auto">
+                    <h5 class="card-title">{{r.userFrom}}</h5>
+                    <h6 class="card-subtitle mb-2">{{r.userFromEmail}}</h6>
+                    <p class="card-text">{{r.relationshipRequestState}}</p>
+                </div>
+                <div class="col-5 mx-auto">
+                    <button (click)="acceptRequest(r); clicked=true;" [disabled]="clicked" class="btn btn-primary m-1">Accept</button>
+                    <button (click)="rejectRequest(r); clicked=true;" [disabled]="clicked" class="btn btn-secundary m-1">Reject</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

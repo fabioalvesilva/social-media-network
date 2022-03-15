@@ -1,0 +1,5373 @@
+{
+	"info": {
+		"_postman_id": "6a6d729a-f0ea-454c-8d79-c0445eb5ed76",
+		"name": "SocialNetwork",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auto_MDRS",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Successful",
+							"item": [
+								{
+									"name": "CreateUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER', body.id);",
+													"    }",
+													"    if (body.hasOwnProperty('email')) {",
+													"        pm.environment.set('USER_EMAIL', body.email);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFirstName}} {{$randomFirstName}}\",\n  \"email\": \"{{$randomFirstName}}@email.com\",\n  \"password\": \"!234Qwerty\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomFirstName}}12356\",\n  \"facebook\": \"{{$randomFirstName}}123456\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Female\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_USER');",
+													"        testResponseId = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Users/{{ID_USER}}",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												"{{ID_USER}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseEmail = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_USER');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('email')) {",
+													"         body.email === pm.environment.get('USER_EMAIL');",
+													"        testResponseEmail= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Email', function(){",
+													"    pm.expect(testResponseEmail).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"{{ID_USER}}\",\n  \"name\": \"{{$randomFirstName}} {{$randomFirstName}}\",\n  \"email\": \"{{$randomFirstName}}@email.com\",\n  \"password\": \"!234Qwerty\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomFirstName}}12356\",\n  \"facebook\": \"{{$randomFirstName}}123456\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Female\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/{{ID_USER}}",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												"{{ID_USER}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckExistentUsers",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Users/",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseActive = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_USER');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('active')) {",
+													"         body.active === false;",
+													"        testResponseActive= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Active', function(){",
+													"    pm.expect(testResponseActive).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Users/{{ID_USER}}",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												"{{ID_USER}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CheckExceptions",
+							"item": [
+								{
+									"name": "CreateUserEmptyFields",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to have a empty name.\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"birthdate\": \"\",\n  \"phoneNumber\": \"\",\n  \"linkedin\": \"\",\n  \"facebook\": \"\",\n  \"active\": true,\n  \"mood\": \"\",\n  \"tags\": []\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateUserInexistentMood",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"Mood should be one of: JOYFUL,DISTRESSED,HOPEFUL,FEARFUL,RELIEVE,DISAPPOINTED,PROUD,REMORSEFUL,GRATEFUL,ANGRY,MEDIUM,HIGH,TOBEDEFINED,\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"{{ID_USER}}\",\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"http://www.linkedin.com/{{$randomUserName}}\",\n  \"facebook\": \"http://www.facebook.com/{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"ze\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/{{ID_USER}}",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												"{{ID_USER}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserInvalidEmail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"Invallid email format!\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"email\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"http://www.linkedin.com/{{$randomUserName}}\",\n  \"facebook\": \"http://www.facebook.com/{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"ze\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserInvalidDOB",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"Invallid date format, should be yyyy-mm-dd!\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"00\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"http://www.linkedin.com/{{$randomUserName}}\",\n  \"facebook\": \"http://www.facebook.com/{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"ze\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserInvalidURL",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"Invallid url format!\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"wwwmasmasmas\",\n  \"facebook\": \"http://www.facebook.com/{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"ze\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserExistentEmail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"A user with this email already exists\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{USER_EMAIL}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"http://www.linkedin.com/{{$randomUserName}}\",\n  \"facebook\": \"http://www.facebook.com/{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"ze\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "RelationshipRequests",
+					"item": [
+						{
+							"name": "Prerequirements",
+							"item": [
+								{
+									"name": "CreateUserFrom",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_FROM', body.id);",
+													"        pm.environment.set('ID_USER_MY_RELATIONSHIP', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n\"avatar\": \"Female\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserTo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_TO', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n ],\n\"avatar\": \"Female\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Successful",
+							"item": [
+								{
+									"name": "CreateRelationshipRequestPENDING",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_RELATIONSHIP_REQUEST', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"userFrom\": \"{{ID_USER}}\",\n\"userTo\":  \"{{ID_USER_TO}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateRelationshipRequestRejected",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseRelatioshipState = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_RELATIONSHIP_REQUEST');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('relationshipRequestState')) {",
+													"         body.relationshipRequestState === \"REJECTED\";",
+													"        testResponseRelatioshipState= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Respsonse Status', function(){",
+													"    pm.expect(testResponseRelatioshipState).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"id\" : \"{{ID_RELATIONSHIP_REQUEST}}\",\n\"userFrom\": \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER}}\",\n\"relationshiprequeststate\": \"REJECTED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckRelationshipRequestRejected",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseRelatioshipState = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_RELATIONSHIP_REQUEST');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('relationshipRequestState')) {",
+													"         body.relationshipRequestState === \"PENDING\";",
+													"        testResponseRelatioshipState= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Respsonse Status', function(){",
+													"    pm.expect(testResponseRelatioshipState).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateRelationshipRequestAPPROVED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_RELATIONSHIP_REQUEST', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"userFrom\": \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER_TO}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckRelationshipRequestAPPROVED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseRelatioshipState = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_RELATIONSHIP_REQUEST');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('relationshipRequestState')) {",
+													"         body.relationshipRequestState === \"PENDING\";",
+													"        testResponseRelatioshipState= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Respsonse Status', function(){",
+													"    pm.expect(testResponseRelatioshipState).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateRelationshipRequestAPPROVED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseRelatioshipState = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_USER');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('relationshipRequestState')) {",
+													"         body.relationshipRequestState === \"APPROVED\";",
+													"        testResponseRelatioshipState= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Respsonse Status', function(){",
+													"    pm.expect(testResponseRelatioshipState).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"id\" : \"{{ID_RELATIONSHIP_REQUEST}}\",\n\"userFrom\": \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER_TO}}\",\n\"relationshiprequeststate\": \"APPROVED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckExistentRelationshipRequest",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"/*",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckPendingRelationshipRequests",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseRelatioshipState = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"    testResponseId =true;",
+													"",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/pending/{{ID_USER_TO}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"pending",
+												"{{ID_USER_TO}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteRelationshipRequest",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}api/RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}api"
+											],
+											"path": [
+												"RelationshipRequests",
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CheckExceptions",
+							"item": [
+								{
+									"name": "CreateRelationshipRequest",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_RELATIONSHIPS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_RELATIONSHIP_REQUEST', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"userFrom\": \"{{ID_USER_TO}}\",\n\"userTo\":  \"{{ID_USER_FROM}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateRelationshipRequestRepeated",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to ask an two request relationship for the same persone.\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"userFrom\": \"{{ID_USER_TO}}\",\n\"userTo\":  \"{{ID_USER_FROM}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateRelationshipSameUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to have a relationshipo with yourself. :(\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"function randomDate(start, end) {",
+													"    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));",
+													"}",
+													"var date = randomDate(new Date(2000, 0, 1), new Date());",
+													"var formattedDate =  + date.getFullYear()+ '-' + (date.getMonth()+1) + '-' + date.getDate() ;",
+													"pm.environment.set(\"DATA_DOB\", formattedDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"userFrom\":  \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER_FROM}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateRelationshipNotFound",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 404;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode){",
+													"    testResponseCode =true;",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"id\" : \"{{ID_RELATIONSHIP_REQUEST}}\",\n\"userFrom\": \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER}}\",\n\"relationshiprequeststate\": \"REJECTED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequest/0",
+											"host": [
+												"{{URL}}RelationshipRequest"
+											],
+											"path": [
+												"0"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateRelationshipRequest",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"id\" : \"{{ID_RELATIONSHIP_REQUEST}}\",\n\"userFrom\": \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER_TO}}\",\n\"relationshiprequeststate\": \"REJECTED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateRelationshipSecondTime",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to change the state of a rejected request.\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\"id\" : \"{{ID_RELATIONSHIP_REQUEST}}\",\n\"userFrom\": \"{{ID_USER_FROM}}\",\n\"userTo\":  \"{{ID_USER_TO}}\",\n\"relationshiprequeststate\": \"REJECTED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}RelationshipRequests/{{ID_RELATIONSHIP_REQUEST}}",
+											"host": [
+												"{{URL}}RelationshipRequests"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Relationships",
+					"item": [
+						{
+							"name": "Prerequirements",
+							"item": [
+								{
+									"name": "CreateUserFrom",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_FROM', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserTo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_TO', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\":\"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Successful",
+							"item": [
+								{
+									"name": "CheckExistenRelationships",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Relationships/",
+											"host": [
+												"{{URL}}Relationships"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckRelationship",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Relationships/{{ID_RELATIONSHIP}}",
+											"host": [
+												"{{URL}}Relationships"
+											],
+											"path": [
+												"{{ID_RELATIONSHIP}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckMyRelationship",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"/*",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Relationships/MyRelationships/{{ID_USER_MY_RELATIONSHIP}}",
+											"host": [
+												"{{URL}}Relationships"
+											],
+											"path": [
+												"MyRelationships",
+												"{{ID_USER_MY_RELATIONSHIP}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "IntroductionRequests",
+					"item": [
+						{
+							"name": "Prerequirements",
+							"item": [
+								{
+									"name": "CreateUserFrom",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_FROM', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserMiddle",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_MIDDLE', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserTo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_TO', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Successful",
+							"item": [
+								{
+									"name": "CreateIntroductionAPPROVED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_INTRODUCTIONS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_INTRODUCTION_REQUEST', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\":  \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"requestMessage\": \"Ola user B gosstaria de ser apresentado aao user C\",\n    \"presentationMessage\": \"Ola User C Gosstaria de o Conhecer\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateIntroductionREJECTED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_INTRODUCTIONS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_INTRODUCTION_REQUEST', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\":  \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"requestMessage\": \"Ola user B gosstaria de ser apresentado aao user C\",\n    \"presentationMessage\": \"Ola User C Gosstaria de o Conhecer\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateIntroductionREJECTED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_INTRODUCTIONS_REQUESTS'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseINtroductionRequestsState = false;",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_INTRODUCTION_REQUEST');",
+													"        testResponseId = true;",
+													"    }",
+													"    if (body.hasOwnProperty('introductionRequestState')) {",
+													"         body.introductionRequestState === \"REJECTED\";",
+													"        testResponseRelatioshipState= true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"pm.test('ResponseBody Respsonse Status', function(){",
+													"    pm.expect(testResponseRelatioshipState).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"{{ID_INTRODUCTION_REQUEST}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"introductionRequestState\": \"REJECTED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/{{ID_INTRODUCTION_REQUEST}}",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												"{{ID_INTRODUCTION_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckExistentIntroductions",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"/*pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Introductions",
+											"host": [
+												"{{URL}}Introductions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckUserIntroduction",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_USER');",
+													"        testResponseId = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/{{ID_INTRODUCTION_REQUEST}}",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												"{{ID_INTRODUCTION_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteIntroduction",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/{{ID_INTRODUCTION_REQUEST}}",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												"{{ID_INTRODUCTION_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CheckException",
+							"item": [
+								{
+									"name": "UpdateIntroductionAlreadyRejected",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to change the state of a rejected introduction request.\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"{{ID_INTRODUCTION_REQUEST}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"introductionRequestState\": \"REJECTED\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/{{ID_INTRODUCTION_REQUEST}}",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												"{{ID_INTRODUCTION_REQUEST}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateIntroductionSameUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to have a introductionRequest with yourself. :(\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\":  \"{{ID_USER_FROM}}\",\n    \"userTo\": \"{{ID_USER_FROM}}\",\n    \"requestMessage\": \"Ola user B gosstaria de ser apresentado aao user C\",\n    \"presentationMessage\": \"Ola User C Gosstaria de o Conhecer\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}IntroductionRequests/",
+											"host": [
+												"{{URL}}IntroductionRequests"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Introductions",
+					"item": [
+						{
+							"name": "Prerequirements",
+							"item": [
+								{
+									"name": "CreateUserFrom",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_FROM', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users",
+											"host": [
+												"{{URL}}Users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserMiddle",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_MIDDLE', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateUserTo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_USER_TO', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"//Generate random Date of Birth in MM/DD/YYYY Format",
+													"",
+													"const moment = require(\"moment\");",
+													"var startdate = moment();",
+													"startdate = startdate.subtract(1, \"days\");",
+													"startdate = startdate.format(\"DD-MM-YYYY\");",
+													"let min_date = moment().subtract(18, 'years');",
+													"",
+													"pm.variables.set(\"DATA_DOB\", moment().subtract(18, 'years').format(\"YYYY-MM-DD\"));",
+													"",
+													"",
+													"//var item = items[Math.floor(Math.random()*items.length)];",
+													"",
+													"moods = pm.environment.get(\"USER_MOODS\");",
+													"mood = moods[Math.floor(Math.random()*moods.length)];",
+													"pm.environment.set(\"USER_MOOD\",mood);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"{{$randomFullName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"password\": \"{{$randomPassword}}\",\n  \"birthdate\": \"{{DATA_DOB}}\",\n  \"phoneNumber\": \"{{$randomPhoneNumber}}\",\n  \"linkedin\": \"{{$randomUserName}}\",\n  \"facebook\": \"{{$randomUserName}}\",\n  \"active\": true,\n  \"mood\": \"{{USER_MOOD}}\",\n  \"tags\": [\n    \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\", \"{{$randomWord}}\"\n  ],\n  \"avatar\": \"Male\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Users/",
+											"host": [
+												"{{URL}}Users"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Successful",
+							"item": [
+								{
+									"name": "CreateIntroductionACCEPTED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_INTRODUCTION', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"/*",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"introductionRequestId\" : \"{{ID_INTRODUCTION_REQUEST}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"presentationMessage\": \"string\",\n    \"introductionMessage\": \"string\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Introductions",
+											"host": [
+												"{{URL}}Introductions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckIntroduction",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"var testResponseId= false;",
+													"var testResponseState= false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        body.id === pm.environment.get('ID_INTRODUCTION');",
+													"        testResponseId = true;",
+													"    }",
+													"        if (body.hasOwnProperty('introductionState') ){",
+													"         body.introductionState === \"APPROVED\";",
+													"        ",
+													"        testResponseState = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody ID', function(){",
+													"    pm.expect(testResponseId).to.equal(true);",
+													"})",
+													"",
+													"pm.test('ResponseBody State ', function(){",
+													"    pm.expect(testResponseState).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Introductions/{{ID_INTRODUCTION}}",
+											"host": [
+												"{{URL}}Introductions"
+											],
+											"path": [
+												"{{ID_INTRODUCTION}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CheckExistentIntroductions",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_GETALL'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 200;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_INTRODUCTION', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"/*",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Introductions/",
+											"host": [
+												"{{URL}}Introductions"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteIntroduction",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{URL}}Introductions/{{ID_INTRODUCTION}}",
+											"host": [
+												"{{URL}}Introductions"
+											],
+											"path": [
+												"{{ID_INTRODUCTION}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateIntroductionREJECTED",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 201;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testJsonSchema = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('id')) {",
+													"        pm.environment.set('ID_INTRODUCTION', body.id);",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"/*",
+													"pm.test('ResponseSchema', function(){",
+													"    pm.expect(testJsonSchema).to.equal(true);",
+													"})*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"introductionRequestId\" : \"{{ID_INTRODUCTION_REQUEST}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"presentationMessage\": \"string\",\n    \"introductionMessage\": \"string\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Introductions",
+											"host": [
+												"{{URL}}Introductions"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CheckExcceptions",
+							"item": [
+								{
+									"name": "UpdateIntroductionAlreadyRejected",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message ===  \"It is not possible to change the state of a rejected introduction.\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"id\" : \"{{ID_INTRODUCTION}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"presentationMessage\": \"string\",\n    \"introductionMessage\": \"string\",\n    \"introductionState\": \"REJECTED\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Introductions/{{ID_INTRODUCTION}}",
+											"host": [
+												"{{URL}}Introductions"
+											],
+											"path": [
+												"{{ID_INTRODUCTION}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateIntroductionSameUser",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if(ajv.validate(Schema,body) === true){",
+													"        testJsonSchema=  true;",
+													"    }",
+													"",
+													"        if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to have a introduction with yourself. :(\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function(){",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function(){",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"introductionRequestId\" : \"{{ID_INTRODUCTION_REQUEST}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_FROM}}\",\n    \"userTo\": \"{{ID_USER_FROM}}\",\n    \"presentationMessage\": \"string\",\n    \"introductionMessage\": \"string\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Introductions",
+											"host": [
+												"{{URL}}Introductions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CreateIntroductionEmptyMessages",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//Schema Response",
+													"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+													"//Expected Response Code",
+													"const ExpectedResponseCode = 400;",
+													"// Ajv for schema validation ",
+													"var Ajv = require('ajv');",
+													"ajv = new Ajv({ logger: console });",
+													"",
+													"//Assertion variables",
+													"var testResponseCode = false;",
+													"var testResponseMsg = false;",
+													"",
+													"//Verification response code ok and no empty body",
+													"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+													"    testResponseCode = true;",
+													"    var body = JSON.parse(responseBody);",
+													"",
+													"    if (ajv.validate(Schema, body) === true) {",
+													"        testJsonSchema = true;",
+													"    }",
+													"",
+													"    if (body.hasOwnProperty('message')) {",
+													"        body.message === \"It is not possible to have a empty message.\";",
+													"        testResponseMsg = true;",
+													"    }",
+													"}",
+													"",
+													"pm.test('ResponseCode', function () {",
+													"    pm.expect(testResponseCode).to.equal(true);",
+													"})",
+													"pm.test('ResponseMessage', function () {",
+													"    pm.expect(testResponseMsg).to.equal(true);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n    \"introductionRequestId\" : \"{{ID_INTRODUCTION_REQUEST}}\",\n    \"userFrom\": \"{{ID_USER_FROM}}\",\n    \"userMiddle\": \"{{ID_USER_MIDDLE}}\",\n    \"userTo\": \"{{ID_USER_TO}}\",\n    \"presentationMessage\": \"\",\n    \"introductionMessage\": \"\"\n  }\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}Introductions",
+											"host": [
+												"{{URL}}Introductions"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Planeamento",
+			"item": [
+				{
+					"name": "GetShortestPath",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"//Schema Response",
+									"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"//Expected Response Code",
+									"const ExpectedResponseCode = 200;",
+									"// Ajv for schema validation ",
+									"var Ajv = require('ajv');",
+									"ajv = new Ajv({ logger: console });",
+									"",
+									"//Assertion variables",
+									"var testResponseCode = false;",
+									"var testJsonSchema = false;",
+									"var testResponseId= false;",
+									"",
+									"//Verification response code ok and no empty body",
+									"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+									"    testResponseCode = true;",
+									"    var body = JSON.parse(responseBody);",
+									"",
+									"    if(ajv.validate(Schema,body) === true){",
+									"        testJsonSchema=  true;",
+									"    }",
+									"",
+									"    if (body.hasOwnProperty('id')) {",
+									"        body.id === pm.environment.get('ID_USER');",
+									"        testResponseId = true;",
+									"    }",
+									"}",
+									"",
+									"pm.test('ResponseCode', function(){",
+									"    pm.expect(testResponseCode).to.equal(true);",
+									"})",
+									"pm.test('ResponseSchema', function(){",
+									"  //  pm.expect(testJsonSchema).to.equal(true);",
+									"})",
+									"pm.test('ResponseBody ID', function(){",
+									"    //pm.expect(testResponseId).to.equal(true);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}Planeamento/shortestPath?userFrom=Sarah%20Silva&userTo=Pedro%20Mourao",
+							"host": [
+								"{{URL}}Planeamento"
+							],
+							"path": [
+								"shortestPath"
+							],
+							"query": [
+								{
+									"key": "userFrom",
+									"value": "Sarah%20Silva"
+								},
+								{
+									"key": "userTo",
+									"value": "Pedro%20Mourao"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetStrongestPath",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"//Schema Response",
+									"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"//Expected Response Code",
+									"const ExpectedResponseCode = 200;",
+									"// Ajv for schema validation ",
+									"var Ajv = require('ajv');",
+									"ajv = new Ajv({ logger: console });",
+									"",
+									"//Assertion variables",
+									"var testResponseCode = false;",
+									"var testJsonSchema = false;",
+									"var testResponseId= false;",
+									"",
+									"//Verification response code ok and no empty body",
+									"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+									"    testResponseCode = true;",
+									"    var body = JSON.parse(responseBody);",
+									"",
+									"    if(ajv.validate(Schema,body) === true){",
+									"        testJsonSchema=  true;",
+									"    }",
+									"",
+									"    if (body.hasOwnProperty('id')) {",
+									"        body.id === pm.environment.get('ID_USER');",
+									"        testResponseId = true;",
+									"    }",
+									"}",
+									"",
+									"pm.test('ResponseCode', function(){",
+									"    pm.expect(testResponseCode).to.equal(true);",
+									"})",
+									"pm.test('ResponseSchema', function(){",
+									"  //  pm.expect(testJsonSchema).to.equal(true);",
+									"})",
+									"pm.test('ResponseBody ID', function(){",
+									"   // pm.expect(testResponseId).to.equal(true);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}Planeamento/strongestPath?userFrom=Sarah%20Silva&userTo=Pedro%20Mourao",
+							"host": [
+								"{{URL}}Planeamento"
+							],
+							"path": [
+								"strongestPath"
+							],
+							"query": [
+								{
+									"key": "userFrom",
+									"value": "Sarah%20Silva"
+								},
+								{
+									"key": "userTo",
+									"value": "Pedro%20Mourao"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSafestPath",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"//Schema Response",
+									"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"//Expected Response Code",
+									"const ExpectedResponseCode = 200;",
+									"// Ajv for schema validation ",
+									"var Ajv = require('ajv');",
+									"ajv = new Ajv({ logger: console });",
+									"",
+									"//Assertion variables",
+									"var testResponseCode = false;",
+									"var testJsonSchema = false;",
+									"var testResponseId= false;",
+									"",
+									"//Verification response code ok and no empty body",
+									"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+									"    testResponseCode = true;",
+									"    var body = JSON.parse(responseBody);",
+									"",
+									"    if(ajv.validate(Schema,body) === true){",
+									"        testJsonSchema=  true;",
+									"    }",
+									"",
+									"    if (body.hasOwnProperty('id')) {",
+									"        body.id === pm.environment.get('ID_USER');",
+									"        testResponseId = true;",
+									"    }",
+									"}",
+									"",
+									"pm.test('ResponseCode', function(){",
+									"    pm.expect(testResponseCode).to.equal(true);",
+									"})",
+									"pm.test('ResponseSchema', function(){",
+									"   // pm.expect(testJsonSchema).to.equal(true);",
+									"})",
+									"pm.test('ResponseBody ID', function(){",
+									"    //pm.expect(testResponseId).to.equal(true);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}Planeamento/safestpath?userFrom=Sarah%20Silva&userTo=Pedro%20Mourao",
+							"host": [
+								"{{URL}}Planeamento"
+							],
+							"path": [
+								"safestpath"
+							],
+							"query": [
+								{
+									"key": "userFrom",
+									"value": "Sarah%20Silva"
+								},
+								{
+									"key": "userTo",
+									"value": "Pedro%20Mourao"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSafestPath Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"//Schema Response",
+									"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+									"//Expected Response Code",
+									"const ExpectedResponseCode = 200;",
+									"// Ajv for schema validation ",
+									"var Ajv = require('ajv');",
+									"ajv = new Ajv({ logger: console });",
+									"",
+									"//Assertion variables",
+									"var testResponseCode = false;",
+									"var testJsonSchema = false;",
+									"var testResponseId= false;",
+									"",
+									"//Verification response code ok and no empty body",
+									"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+									"    testResponseCode = true;",
+									"    var body = JSON.parse(responseBody);",
+									"",
+									"    if(ajv.validate(Schema,body) === true){",
+									"        testJsonSchema=  true;",
+									"    }",
+									"",
+									"    if (body.hasOwnProperty('id')) {",
+									"        body.id === pm.environment.get('ID_USER');",
+									"        testResponseId = true;",
+									"    }",
+									"}",
+									"",
+									"pm.test('ResponseCode', function(){",
+									"    pm.expect(testResponseCode).to.equal(true);",
+									"})",
+									"pm.test('ResponseSchema', function(){",
+									"  //  pm.expect(testJsonSchema).to.equal(true);",
+									"})",
+									"pm.test('ResponseBody ID', function(){",
+									"   // pm.expect(testResponseId).to.equal(true);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}Planeamento/safestpathV2?userFrom=Sarah%20Silva&userTo=Pedro%20Mourao",
+							"host": [
+								"{{URL}}Planeamento"
+							],
+							"path": [
+								"safestpathV2"
+							],
+							"query": [
+								{
+									"key": "userFrom",
+									"value": "Sarah%20Silva"
+								},
+								{
+									"key": "userTo",
+									"value": "Pedro%20Mourao"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auto_MDPC",
+			"item": [
+				{
+					"name": "Prerequirements",
+					"item": [
+						{
+							"name": "CheckUserByEmail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 200;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"var testResponseId= false;",
+											"var testResponseEmail = false;",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"",
+											"    if (body.hasOwnProperty('id')) {",
+											"        body.id === pm.environment.get('ID_USER');",
+											"        pm.environment.set(\"ID_POST_USER_ID\", body.id)",
+											"        pm.environment.set(\"ID_POST_USER_NAME\", body.id)",
+											"        testResponseId = true;",
+											"    }",
+											"    if (body.hasOwnProperty('email')) {",
+											"         body.email === pm.environment.get('USER_EMAIL');",
+											"        testResponseEmail= true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})",
+											"pm.test('ResponseBody ID', function(){",
+											"    pm.expect(testResponseId).to.equal(true);",
+											"})",
+											"pm.test('ResponseBody Email', function(){",
+											"    pm.expect(testResponseEmail).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://mdrs74.azurewebsites.net/mdrs/Users/search/rafael@example.net",
+									"protocol": "https",
+									"host": [
+										"mdrs74",
+										"azurewebsites",
+										"net"
+									],
+									"path": [
+										"mdrs",
+										"Users",
+										"search",
+										"rafael@example.net"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CheckUserByEmail2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 200;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"var testResponseId= false;",
+											"var testResponseEmail = false;",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"",
+											"    if (body.hasOwnProperty('id')) {",
+											"        body.id === pm.environment.get('ID_USER');",
+											"        pm.environment.set(\"ID_POST_USER_ID_2\", body.id)",
+											"        pm.environment.set(\"ID_POST_USER_NAME_2\", body.id)",
+											"        testResponseId = true;",
+											"    }",
+											"    if (body.hasOwnProperty('email')) {",
+											"         body.email === pm.environment.get('USER_EMAIL');",
+											"        testResponseEmail= true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})",
+											"pm.test('ResponseBody ID', function(){",
+											"    pm.expect(testResponseId).to.equal(true);",
+											"})",
+											"pm.test('ResponseBody Email', function(){",
+											"    pm.expect(testResponseEmail).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://mdrs74.azurewebsites.net/mdrs/Users/search/sarah@example.net",
+									"protocol": "https",
+									"host": [
+										"mdrs74",
+										"azurewebsites",
+										"net"
+									],
+									"path": [
+										"mdrs",
+										"Users",
+										"search",
+										"sarah@example.net"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Posts",
+					"item": [
+						{
+							"name": "PostPost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 200;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/testJsonSchema=  true;",
+											"    if (body.hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_POST', body.id);",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"{{$randomCatchPhrase}}\",\n  \"date\": \"1/1/2022\",\n  \"userId\": \"{{ID_POST_USER_ID}}\",\n  \"author\": \"{{ID_POST_USER_NAME}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}post",
+									"host": [
+										"{{URL_POSTS}}post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdatePost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/testJsonSchema=  true;",
+											"    if (body.hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_POST', body.id);",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"{{ID_POST}}\",\n  \"text\": \"{{$randomCatchPhrase}}\",\n  \"date\": \"1/1/2022\",\n  \"userId\": \"{{ID_POST_USER_ID}}\",\n  \"author\": \"{{ID_POST_USER_NAME}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}/post?id={{ID_POST}}",
+									"host": [
+										"{{URL_POSTS}}"
+									],
+									"path": [
+										"post"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{ID_POST}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetallPosts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/",
+											"",
+											"    if (body[0].hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_POST', body[0].id);",
+											"        testJsonSchema=  true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"hjhgjg\",\n  \"date\": \"22/01/2022\",\n  \"userId\": \"d0466d5a-6f1e-4fa1-bc57-086253f31426\",\n  \"author\": \"Rafael Soares\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}post",
+									"host": [
+										"{{URL_POSTS}}post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPostById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/testJsonSchema=  true;",
+											"    if (body.hasOwnProperty('id')) {",
+											"        //pm.environment.set('ID_POST', body.id);",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"hjhgjg\",\n  \"date\": \"22/01/2022\",\n  \"userId\": \"d0466d5a-6f1e-4fa1-bc57-086253f31426\",\n  \"author\": \"Rafael Soares\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}post?id=61ed9eb4756b3955b08b5d25",
+									"host": [
+										"{{URL_POSTS}}post"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "61ed9eb4756b3955b08b5d25"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comments",
+					"item": [
+						{
+							"name": "PostComment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 200;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/testJsonSchema=  true;",
+											"    if (body.hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_COMMENT', body.id);",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"text\": \"{{$randomCatchPhrase}}\",\n        \"date\": \"1/23/2022\",\n        \"postId\": \"{{ID_POST}}\",\n        \"userId\": \"{{ID_POST_USER_ID}}\",\n        \"author\": \"{{Rafael Soares}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}comments",
+									"host": [
+										"{{URL_POSTS}}comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetCommentsByPost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/",
+											"",
+											"    if (body[0].hasOwnProperty('id')) {",
+											"        //pm.environment.set('ID_POST', body[0].id);",
+											"        testJsonSchema=  true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"hjhgjg\",\n  \"date\": \"22/01/2022\",\n  \"userId\": \"d0466d5a-6f1e-4fa1-bc57-086253f31426\",\n  \"author\": \"Rafael Soares\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}comments?postId=61e2d9907a203189d4fd9047",
+									"host": [
+										"{{URL_POSTS}}comments"
+									],
+									"query": [
+										{
+											"key": "postId",
+											"value": "61e2d9907a203189d4fd9047"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllComments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/",
+											"",
+											"    if (body[0].hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_COMMENT', body[0].id);",
+											"        testJsonSchema=  true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"hjhgjg\",\n  \"date\": \"22/01/2022\",\n  \"userId\": \"d0466d5a-6f1e-4fa1-bc57-086253f31426\",\n  \"author\": \"Rafael Soares\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}comments",
+									"host": [
+										"{{URL_POSTS}}comments"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reactions",
+					"item": [
+						{
+							"name": "PostReactionPostive",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 200;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/testJsonSchema=  true;",
+											"    if (body.hasOwnProperty('id')) {",
+											"    //   pm.environment.set('ID_COMMENT', body.id);",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"reaction\": 1,\n        \"date\": \"1/23/2022\",\n        \"userId\": \"{{ID_POST_USER_ID}}\",\n        \"objectId\": \"{{ID_POST}}\",\n        \"objectType\": 1\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}reaction",
+									"host": [
+										"{{URL_POSTS}}reaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PostReactionNegative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 200;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/testJsonSchema=  true;",
+											"    if (body.hasOwnProperty('id')) {",
+											"      //  pm.environment.set('ID_COMMENT', body.id);",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"reaction\": -1,\n        \"date\": \"1/23/2022\",\n        \"userId\": \"{{ID_POST_USER_ID_2}}\",\n        \"objectId\": \"{{ID_POST}}\",\n        \"objectType\": 1\n}\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}reaction",
+									"host": [
+										"{{URL_POSTS}}reaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetReactionByPost",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/",
+											"",
+											"    if (body[0].hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_COMMENT', body[0].id);",
+											"        testJsonSchema=  true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"hjhgjg\",\n  \"date\": \"22/01/2022\",\n  \"userId\": \"d0466d5a-6f1e-4fa1-bc57-086253f31426\",\n  \"author\": \"Rafael Soares\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}reaction?ipostId=61edafcfc80a381965faebfe",
+									"host": [
+										"{{URL_POSTS}}reaction"
+									],
+									"query": [
+										{
+											"key": "ipostId",
+											"value": "61edafcfc80a381965faebfe"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllReactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//Schema Response",
+											"//const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"const Schema = JSON.parse(pm.environment.get('SCHEMA_USERS_POST'));",
+											"//Expected Response Code",
+											"const ExpectedResponseCode = 201;",
+											"// Ajv for schema validation ",
+											"var Ajv = require('ajv');",
+											"ajv = new Ajv({ logger: console });",
+											"",
+											"//Assertion variables",
+											"var testResponseCode = false;",
+											"var testJsonSchema = false;",
+											"",
+											"//Verification response code ok and no empty body",
+											"if (responseCode.code === ExpectedResponseCode && responseBody !== null && responseBody !== undefined && responseBody.length > 0) {",
+											"    testResponseCode = true;",
+											"    var body = JSON.parse(responseBody);",
+											"/*",
+											"    if(ajv.validate(Schema,body) === true){",
+											"        testJsonSchema=  true;",
+											"    }",
+											"*/",
+											"",
+											"    if (body[0].hasOwnProperty('id')) {",
+											"        pm.environment.set('ID_COMMENT', body[0].id);",
+											"        testJsonSchema=  true;",
+											"    }",
+											"}",
+											"",
+											"pm.test('ResponseCode', function(){",
+											"    pm.expect(testResponseCode).to.equal(true);",
+											"})",
+											"pm.test('ResponseSchema', function(){",
+											"    pm.expect(testJsonSchema).to.equal(true);",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"hjhgjg\",\n  \"date\": \"22/01/2022\",\n  \"userId\": \"d0466d5a-6f1e-4fa1-bc57-086253f31426\",\n  \"author\": \"Rafael Soares\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_POSTS}}reaction",
+									"host": [
+										"{{URL_POSTS}}reaction"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,123 @@
+<section class="vh-100">
+  <div class="container d-flex align-items-center justify-content-center vh-100">
+    <form class="form-sigin" #createUserForm="ngForm" (ngSubmit)="create(createUserForm)">
+      <div class="row">
+        <div class="col text-center">
+          <img src="../../../assets/img/logo_transparent.png" width="150" height="150" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        </div>
+      </div>
+      <div class="form-group">
+        <div *ngIf="!registerSuccess && registerSuccess != null" class="alert alert-danger">{{this.errorMessage}}</div>
+        <div *ngIf="registerSuccess" class="alert alert-success">Welcome, {{this.username}}</div>
+      </div>
+      <div class="form-row mb-2">
+        <div class="col">
+          <input type="text" id="userName" ngModel class="form-control" name="userName" placeholder="Name" required
+            autofocus>
+        </div>
+        <div class="col">
+          <input type="text" id="birthdate" ngModel class="form-control" name="birthdate"
+            placeholder="Birthdate (YYYY-MM-AA)" required>
+        </div>
+      </div>
+      <div class="form-row mb-2">
+        <div class="col">
+          <input type="email" id="email" ngModel class="form-control" name="email" placeholder="Email" required
+            autofocus>
+        </div>
+        <div class="col">
+          <input type="password" id="password" ngModel class="form-control" name="password" placeholder="Password"
+            required>
+        </div>
+      </div>
+      <div class="form-row mb-2">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-text bg-input">linkedin.com/</div>
+            <input type="text" id="linkedin" ngModel class="form-control" name="linkedin" placeholder="@username"
+              required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-text bg-input">facebook.com/</div>
+            <input type="text" id="facebook" ngModel class="form-control" name="facebook" placeholder="@username"
+              required>
+          </div>
+        </div>
+      </div>
+      <div class="form-row  mb-2">
+        <div class="col">
+          <select class="custom-select custom-select-sm form-control" ngModel name="mood" id="mood">
+            <option value="" disabled selected hidden>How's your mood today?</option>
+            <option value="JOYFUL">JOYFUL</option>
+            <option value="DISTRESSED">DISTRESSED</option>
+            <option value="HOPEFUL">HOPEFUL</option>
+            <option value="FEARFUL">FEARFUL</option>
+            <option value="RELIEVE">RELIEVE</option>
+            <option value="DISAPPOINTED">DISAPPOINTED</option>
+            <option value="PROUD">PROUD</option>
+            <option value="REMORSEFUL">REMORSEFUL</option>
+            <option value="GRATEFUL">GRATEFUL</option>
+            <option value="ANGRY">ANGRY</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="custom-select custom-select-sm form-control" ngModel name="avatar" id="avatar">
+            <option value="" disabled selected hidden>What's your avatar today?</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Duck">Duck</option>
+            <option value="Duck">Droid</option>
+            <option value="Duck">Cat</option>
+            <option value="Duck">Statue</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="tel" id="phoneNumber" ngModel class="form-control" name="phoneNumber"
+            placeholder="Phon Number (000-000-000)" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="tag_" placeholder="Tag your interests here (i.e: Hat)" #tag />
+          <br />
+          <div class="row">
+            <div class="col-3">
+              <button type="button" id="addtag" (click)="AddTag(tag.value); tag.value='';"
+                class="btn btn-light">Adicionar Tag</button>
+            </div>
+            <div class="col-9">
+              <p *ngIf="addedTag" class="p-1 alert-success">Tag adicionada com sucesso!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success" id="btnSignup" disabled="disabled">Signup</button>
+      </div>
+      <div class="form-group mt-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="termsConditionChecker" required
+            onchange="document.getElementById('btnSignup').disabled = !this.checked;">
+          <label class="form-check-label" for="termsConditionChecker">
+            Agree to <a [routerLink]="['/terms-conditions']">terms and conditions</a>
+          </label>
+        </div>
+      </div>
+      <div class="d-grid gap-2">
+        <p class="small fw-bold mt-2">
+          Do you have an account? <a [routerLink]="['/login']" class="link-info">Login</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</section>

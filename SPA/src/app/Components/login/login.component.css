@@ -1,0 +1,8 @@
+section {
+  min-height: 100%;
+  background: #F5F5F5;
+}
+
+.btn-success {
+  background-color: #0DB1B7 !important;
+}

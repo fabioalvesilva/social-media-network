@@ -1,0 +1,93 @@
+<div class="container">
+    <h2 class="h1 pt-4">Suggested Groups</h2>
+    <p class="pb-4"></p>
+    <div class="row">
+        <div class="col-lg-5 my-4">
+            <div class="container">
+                <form class="d-flex" #searchForm="ngForm" (ngSubmit)="getAllSuggestedGroups(searchForm)">
+                    <div class="container">
+                        <div class="form-header blue accent-1">
+                            <h3> Filter data:</h3>
+                        </div>
+                        <br>
+                        <div class="md-form">
+                            <input class="form-control me-2" type="search" ngModel name="tagA" id="tagA"
+                                placeholder="Tag" aria-label="Search">
+                            <label for="form3"> </label>
+                            <input class="form-control me-2" type="search" ngModel name="minNumUsers" id="minNumUsers"
+                                placeholder="Number Users" aria-label="Search">
+                            <label for="form3"> </label>
+                            <input class="form-control me-2" type="search" ngModel name="numCommonTags"
+                                id="numCommonTags" placeholder="Common Tags Number" aria-label="Search">
+                            <label for="form3"> </label>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div *ngIf="(this.errorFound)" class="alert alert-warning d-flex align-items-center mt-4">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+                    <path
+                        d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                </svg>
+                {{this.errorMessage}}
+            </div>
+            <div class="row" *ngIf="(this.groupFound)">
+
+                <div class="card user-card">
+                    <div class="card-block">
+                        <div class="row mt-4">
+                            <h3>Group</h3>
+                            <hr>
+                            <div class="bg-c-blue counter-block m-t-10 p-20">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <i class="fa fa-tags"></i>
+                                        <p>{{this.nrTags}}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fa fa-user"></i>
+                                        <p>{{this.nrUsers}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="f-w-600 m-t-25 m-b-10"></h3>
+                            <div class="row" *ngFor="let friend of this.list;">
+                                <div>
+                                    <input span hidden type="text" id="userToId" class="form-control"
+                                        aria-label="userToId" name="userToId" value={{friend.id}} [ngModel]="friend.id">
+                                </div>
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <img class="d-flex mr-3 rounded-circle img-thumbnail thumb-lg"
+                                                src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                alt="Generic placeholder image" />
+                                            <div class="media-body">
+                                                <h5 class="mt-0 font-18 mb-1">{{friend.name}}</h5>
+                                                <p class="text-muted font-14"><i class="fas fa-thermometer-half"></i>
+                                                    {{friend.mood}}
+                                                </p>
+                                                <ul class="social-links list-inline mb-0">
+                                                    <li class="list-inline-item">
+                                                        <button type="button"
+                                                            class="btn btn-ligth btn-sm ml-2 btn-rounded"
+                                                            (click)="viewUserProfile(friend.id)">Profile</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

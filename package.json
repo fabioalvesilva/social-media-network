@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@three-ts/orbit-controls": "^1.4.7",
+    "threex": "^1.0.0",
+    "webgl-obj-loader": "^2.0.8"
+  }
+}

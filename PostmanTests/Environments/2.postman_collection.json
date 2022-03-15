@@ -1,0 +1,3448 @@
+{
+	"info": {
+		"_postman_id": "efa882ed-04eb-40ba-95f0-cdef08b79a30",
+		"name": "2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mdrs",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/Categories/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Categories/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Categories",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Categories/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Categories",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n \"description\": \"adipisicing e\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Categories/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n    \"description\": \"adipisicing e\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Categories/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Categories",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n    \"description\": \"adipisicing e\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Categories/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Categories",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n \"description\": \"adipisicing e\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Categories/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Categories/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Categories",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Categories/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Categories",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n \"description\": \"adipisicing e\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Categories/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Categories/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Categories",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Categories/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Categories",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n \"description\": \"adipisicing e\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Categories",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Categories"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Categories",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"urn:uuid:2bcc94fd-91d3-9b84-f16b-588f4155d5c3\",\n  \"description\": \"anim ut\"\n },\n {\n  \"id\": \"urn:uuid:8a4e7162-78d5-9085-5f35-018c8040d615\",\n  \"description\": \"pariatur ipsum\"\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Categories",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Categories",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Categories"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\": \"e\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Categories",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"urn:uuid:47cacbdf-c690-e1f5-83f3-60ae9ea0a9a5\",\n \"description\": \"adipisicing e\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Families",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/Families/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Families/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Families",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "tempor",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Families/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Families",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "tempor",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"mollit nostrud dolor\",\n \"description\": \"sunt\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Families/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"mollit nostrud dolor\",\n    \"description\": \"sunt\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Families/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Families",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "tempor",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"mollit nostrud dolor\",\n    \"description\": \"sunt\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Families/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Families",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "tempor",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"mollit nostrud dolor\",\n \"description\": \"sunt\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Families/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Families/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Families",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "tempor",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Families/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Families",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "tempor",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"mollit nostrud dolor\",\n \"description\": \"sunt\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Families/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Families/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Families",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "tempor",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Families/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Families",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "tempor",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"mollit nostrud dolor\",\n \"description\": \"sunt\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Families",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Families",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Families"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Families",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Families"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"mollit eu\",\n  \"description\": \"nostrud sint esse in elit\"\n },\n {\n  \"id\": \"in exercitation\",\n  \"description\": \"Duis pariatur adip\"\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Families",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"mollit nostrud dolor\",\n    \"description\": \"sunt\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Families",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Families"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"mollit nostrud dolor\",\n    \"description\": \"sunt\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Families",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Families"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"mollit nostrud dolor\",\n \"description\": \"sunt\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Introduction",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/Introduction/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Introduction/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Introduction",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Introduction/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Introduction",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:dd98ff7f-0c25-fcaf-516e-d8d61d762e8c\",\n \"introductionRequestId\": {\n  \"value\": \"Excepteur irure\"\n },\n \"userFrom\": {\n  \"value\": \"anim quis Duis ex dolor\"\n },\n \"userMiddle\": {\n  \"value\": \"nisi\"\n },\n \"userTo\": {\n  \"value\": \"in magna officia Excepteur\"\n },\n \"presentationMessage\": \"Lorem laboris\",\n \"introdutionMessage\": \"occaecat anim quis ad irure\",\n \"introductionState\": \"consectetur dolor voluptate\",\n \"active\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Introduction/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"urn:uuid:43d24361-2d5e-d4cb-cc92-4392c50ee307\",\n    \"introductionRequestId\": {\n        \"value\": \"quis sed\"\n    },\n    \"userFrom\": {\n        \"value\": \"nisi reprehenderit esse nostrud\"\n    },\n    \"userMiddle\": {\n        \"value\": \"ea reprehenderit\"\n    },\n    \"userTo\": {\n        \"value\": \"consectetur ullamco anim ex\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Introduction/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Introduction",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"urn:uuid:43d24361-2d5e-d4cb-cc92-4392c50ee307\",\n    \"introductionRequestId\": {\n        \"value\": \"quis sed\"\n    },\n    \"userFrom\": {\n        \"value\": \"nisi reprehenderit esse nostrud\"\n    },\n    \"userMiddle\": {\n        \"value\": \"ea reprehenderit\"\n    },\n    \"userTo\": {\n        \"value\": \"consectetur ullamco anim ex\"\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Introduction/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Introduction",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:dd98ff7f-0c25-fcaf-516e-d8d61d762e8c\",\n \"introductionRequestId\": {\n  \"value\": \"Excepteur irure\"\n },\n \"userFrom\": {\n  \"value\": \"anim quis Duis ex dolor\"\n },\n \"userMiddle\": {\n  \"value\": \"nisi\"\n },\n \"userTo\": {\n  \"value\": \"in magna officia Excepteur\"\n },\n \"presentationMessage\": \"Lorem laboris\",\n \"introdutionMessage\": \"occaecat anim quis ad irure\",\n \"introductionState\": \"consectetur dolor voluptate\",\n \"active\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Introduction/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Introduction/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Introduction",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Introduction/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Introduction",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:dd98ff7f-0c25-fcaf-516e-d8d61d762e8c\",\n \"introductionRequestId\": {\n  \"value\": \"Excepteur irure\"\n },\n \"userFrom\": {\n  \"value\": \"anim quis Duis ex dolor\"\n },\n \"userMiddle\": {\n  \"value\": \"nisi\"\n },\n \"userTo\": {\n  \"value\": \"in magna officia Excepteur\"\n },\n \"presentationMessage\": \"Lorem laboris\",\n \"introdutionMessage\": \"occaecat anim quis ad irure\",\n \"introductionState\": \"consectetur dolor voluptate\",\n \"active\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Introduction/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Introduction/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Introduction",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Introduction/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Introduction",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:dd98ff7f-0c25-fcaf-516e-d8d61d762e8c\",\n \"introductionRequestId\": {\n  \"value\": \"Excepteur irure\"\n },\n \"userFrom\": {\n  \"value\": \"anim quis Duis ex dolor\"\n },\n \"userMiddle\": {\n  \"value\": \"nisi\"\n },\n \"userTo\": {\n  \"value\": \"in magna officia Excepteur\"\n },\n \"presentationMessage\": \"Lorem laboris\",\n \"introdutionMessage\": \"occaecat anim quis ad irure\",\n \"introductionState\": \"consectetur dolor voluptate\",\n \"active\": false\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Introduction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Introduction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Introduction"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Introduction",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Introduction"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"urn:uuid:417ccf3e-2926-8a09-714a-c9b1bfc4b050\",\n  \"introductionRequestId\": {\n   \"value\": \"Excepteur est Lorem\"\n  },\n  \"userFrom\": {\n   \"value\": \"Lorem dolore ex\"\n  },\n  \"userMiddle\": {\n   \"value\": \"i\"\n  },\n  \"userTo\": {\n   \"value\": \"reprehenderit proident\"\n  },\n  \"presentationMessage\": \"rep\",\n  \"introdutionMessage\": \"ea fugiat cillum incididunt occaecat\",\n  \"introductionState\": \"sit\",\n  \"active\": false\n },\n {\n  \"id\": \"urn:uuid:ecb7e577-13b0-ab40-3395-50ca275c06eb\",\n  \"introductionRequestId\": {\n   \"value\": \"est\"\n  },\n  \"userFrom\": {\n   \"value\": \"magna sed dolore\"\n  },\n  \"userMiddle\": {\n   \"value\": \"Ut elit est\"\n  },\n  \"userTo\": {\n   \"value\": \"vel\"\n  },\n  \"presentationMessage\": \"velit labor\",\n  \"introdutionMessage\": \"pariatur fugiat a\",\n  \"introductionState\": \"cupidatat \",\n  \"active\": true\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Introduction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"introductionRequestId\": {\n        \"value\": \"occaecat veniam commodo\"\n    },\n    \"userFrom\": {\n        \"value\": \"\"\n    },\n    \"userMiddle\": {\n        \"value\": \"pariatur ad\"\n    },\n    \"userTo\": {\n        \"value\": \"Lorem Excepteur enim do dolore\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Introduction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Introduction"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"introductionRequestId\": {\n        \"value\": \"occaecat veniam commodo\"\n    },\n    \"userFrom\": {\n        \"value\": \"\"\n    },\n    \"userMiddle\": {\n        \"value\": \"pariatur ad\"\n    },\n    \"userTo\": {\n        \"value\": \"Lorem Excepteur enim do dolore\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Introduction",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Introduction"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"urn:uuid:dd98ff7f-0c25-fcaf-516e-d8d61d762e8c\",\n \"introductionRequestId\": {\n  \"value\": \"Excepteur irure\"\n },\n \"userFrom\": {\n  \"value\": \"anim quis Duis ex dolor\"\n },\n \"userMiddle\": {\n  \"value\": \"nisi\"\n },\n \"userTo\": {\n  \"value\": \"in magna officia Excepteur\"\n },\n \"presentationMessage\": \"Lorem laboris\",\n \"introdutionMessage\": \"occaecat anim quis ad irure\",\n \"introductionState\": \"consectetur dolor voluptate\",\n \"active\": false\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Introduction Requests",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/IntroductionRequests/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"IntroductionRequests",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"IntroductionRequests",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"f8f8f441-73c5-f47d-f81b-28cae4ba260d\",\n \"userFrom\": {\n  \"value\": \"qui\"\n },\n \"userMiddle\": {\n  \"value\": \"ipsum anim in amet\"\n },\n \"userTo\": {\n  \"value\": \"dolor laborum qui in nostrud\"\n },\n \"requestMessage\": \"adipisicing\",\n \"presentationMessage\": \"irure proident\",\n \"introductionRequestState\": \"cillum ea incididunt velit\",\n \"active\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/IntroductionRequests/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"urn:uuid:5131520b-3c50-07ba-e8f5-47af1064f61e\",\n    \"userFrom\": {\n        \"value\": \"nostrud\"\n    },\n    \"userMiddle\": {\n        \"value\": \"qui\"\n    },\n    \"userTo\": {\n        \"value\": \"adipisicing do est ut\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"IntroductionRequests",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"urn:uuid:5131520b-3c50-07ba-e8f5-47af1064f61e\",\n    \"userFrom\": {\n        \"value\": \"nostrud\"\n    },\n    \"userMiddle\": {\n        \"value\": \"qui\"\n    },\n    \"userTo\": {\n        \"value\": \"adipisicing do est ut\"\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"IntroductionRequests",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"f8f8f441-73c5-f47d-f81b-28cae4ba260d\",\n \"userFrom\": {\n  \"value\": \"qui\"\n },\n \"userMiddle\": {\n  \"value\": \"ipsum anim in amet\"\n },\n \"userTo\": {\n  \"value\": \"dolor laborum qui in nostrud\"\n },\n \"requestMessage\": \"adipisicing\",\n \"presentationMessage\": \"irure proident\",\n \"introductionRequestState\": \"cillum ea incididunt velit\",\n \"active\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/IntroductionRequests/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"IntroductionRequests",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"IntroductionRequests",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"f8f8f441-73c5-f47d-f81b-28cae4ba260d\",\n \"userFrom\": {\n  \"value\": \"qui\"\n },\n \"userMiddle\": {\n  \"value\": \"ipsum anim in amet\"\n },\n \"userTo\": {\n  \"value\": \"dolor laborum qui in nostrud\"\n },\n \"requestMessage\": \"adipisicing\",\n \"presentationMessage\": \"irure proident\",\n \"introductionRequestState\": \"cillum ea incididunt velit\",\n \"active\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/IntroductionRequests/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"IntroductionRequests",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/IntroductionRequests/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"IntroductionRequests",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"f8f8f441-73c5-f47d-f81b-28cae4ba260d\",\n \"userFrom\": {\n  \"value\": \"qui\"\n },\n \"userMiddle\": {\n  \"value\": \"ipsum anim in amet\"\n },\n \"userTo\": {\n  \"value\": \"dolor laborum qui in nostrud\"\n },\n \"requestMessage\": \"adipisicing\",\n \"presentationMessage\": \"irure proident\",\n \"introductionRequestState\": \"cillum ea incididunt velit\",\n \"active\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/IntroductionRequests",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/IntroductionRequests",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"IntroductionRequests"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/IntroductionRequests",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"IntroductionRequests"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"urn:uuid:fa323f97-50a9-6395-fd48-b979ad57873d\",\n  \"userFrom\": {\n   \"value\": \"fugia\"\n  },\n  \"userMiddle\": {\n   \"value\": \"in Lorem exercitation minim\"\n  },\n  \"userTo\": {\n   \"value\": \"consequat\"\n  },\n  \"requestMessage\": \"ut\",\n  \"presentationMessage\": \"id Lorem sit minim\",\n  \"introductionRequestState\": \"amet occaecat in in\",\n  \"active\": false\n },\n {\n  \"id\": \"a99fadda-dce4-462a-4b17-87e8eb05ff4d\",\n  \"userFrom\": {\n   \"value\": \"culpa reprehenderit\"\n  },\n  \"userMiddle\": {\n   \"value\": \"non nulla\"\n  },\n  \"userTo\": {\n   \"value\": \"pariatur eiusmod in\"\n  },\n  \"requestMessage\": \"fugiat tempor laboris\",\n  \"presentationMessage\": \"ex\",\n  \"introductionRequestState\": \"reprehenderit labore veniam \",\n  \"active\": true\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/IntroductionRequests",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"introductionRequestId\": {\n        \"value\": \"occaecat veniam commodo\"\n    },\n    \"userFrom\": {\n        \"value\": \"\"\n    },\n    \"userMiddle\": {\n        \"value\": \"pariatur ad\"\n    },\n    \"userTo\": {\n        \"value\": \"Lorem Excepteur enim do dolore\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/IntroductionRequests",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"IntroductionRequests"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"introductionRequestId\": {\n        \"value\": \"occaecat veniam commodo\"\n    },\n    \"userFrom\": {\n        \"value\": \"\"\n    },\n    \"userMiddle\": {\n        \"value\": \"pariatur ad\"\n    },\n    \"userTo\": {\n        \"value\": \"Lorem Excepteur enim do dolore\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/IntroductionRequests",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"IntroductionRequests"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"f8f8f441-73c5-f47d-f81b-28cae4ba260d\",\n \"userFrom\": {\n  \"value\": \"qui\"\n },\n \"userMiddle\": {\n  \"value\": \"ipsum anim in amet\"\n },\n \"userTo\": {\n  \"value\": \"dolor laborum qui in nostrud\"\n },\n \"requestMessage\": \"adipisicing\",\n \"presentationMessage\": \"irure proident\",\n \"introductionRequestState\": \"cillum ea incididunt velit\",\n \"active\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/Products/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n \"description\": \"dolor\",\n \"categoryId\": {\n  \"value\": \"est labore Ut do adipisicing\"\n }\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Products/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n    \"description\": \"dolor\",\n    \"categoryId\": {\n        \"value\": \"est labore Ut do adipisicing\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n    \"description\": \"dolor\",\n    \"categoryId\": {\n        \"value\": \"est labore Ut do adipisicing\"\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n \"description\": \"dolor\",\n \"categoryId\": {\n  \"value\": \"est labore Ut do adipisicing\"\n }\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Products/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Products/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Products",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Products/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Products",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n \"description\": \"dolor\",\n \"categoryId\": {\n  \"value\": \"est labore Ut do adipisicing\"\n }\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Products/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Products/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Products",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Products/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Products",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n \"description\": \"dolor\",\n \"categoryId\": {\n  \"value\": \"est labore Ut do adipisicing\"\n }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"urn:uuid:07bda2e2-7816-f26f-96ed-0c663c960f79\",\n  \"description\": \"fugiat anim nostrud in sunt\",\n  \"categoryId\": {\n   \"value\": \"cillum mollit dolore laborum\"\n  }\n },\n {\n  \"id\": \"c7222933-4f2c-50e1-7a31-0bdd6301331f\",\n  \"description\": \"dolor in officia ut\",\n  \"categoryId\": {\n   \"value\": \"occaecat deserunt\"\n  }\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Products",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"Lorem nulla velit\",\n    \"categoryId\": {\n        \"value\": \"magna minim dolor in Duis\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Products",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\": \"Lorem nulla velit\",\n    \"categoryId\": {\n        \"value\": \"magna minim dolor in Duis\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Products",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"urn:uuid:fcfcc8fe-b726-0b7f-71e6-c55c510cc6d2\",\n \"description\": \"dolor\",\n \"categoryId\": {\n  \"value\": \"est labore Ut do adipisicing\"\n }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Relationship Requests",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/RelationshipRequests/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"RelationshipRequests",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:934ea50b-19e0-6959-209c-a4df538a00c2\",\n \"state\": \"fugiat dolor\",\n \"userFrom\": {\n  \"value\": \"minim sed\"\n },\n \"userTo\": {\n  \"value\": \"sed\"\n },\n \"active\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/RelationshipRequests/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"culpa\",\n    \"state\": \"sit ullamco nulla mollit\",\n    \"userFrom\": \"incididunt velit\",\n    \"userTo\": \"ut Lorem eiusmod irure\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"culpa\",\n    \"state\": \"sit ullamco nulla mollit\",\n    \"userFrom\": \"incididunt velit\",\n    \"userTo\": \"ut Lorem eiusmod irure\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"RelationshipRequests",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:934ea50b-19e0-6959-209c-a4df538a00c2\",\n \"state\": \"fugiat dolor\",\n \"userFrom\": {\n  \"value\": \"minim sed\"\n },\n \"userTo\": {\n  \"value\": \"sed\"\n },\n \"active\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/RelationshipRequests/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"RelationshipRequests",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:934ea50b-19e0-6959-209c-a4df538a00c2\",\n \"state\": \"fugiat dolor\",\n \"userFrom\": {\n  \"value\": \"minim sed\"\n },\n \"userTo\": {\n  \"value\": \"sed\"\n },\n \"active\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/RelationshipRequests/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/RelationshipRequests/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"RelationshipRequests",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"urn:uuid:934ea50b-19e0-6959-209c-a4df538a00c2\",\n \"state\": \"fugiat dolor\",\n \"userFrom\": {\n  \"value\": \"minim sed\"\n },\n \"userTo\": {\n  \"value\": \"sed\"\n },\n \"active\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/RelationshipRequests",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/RelationshipRequests",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"RelationshipRequests"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"c5250d41-30cf-8458-4d47-08ef6193cda7\",\n  \"state\": \"nostrud\",\n  \"userFrom\": {\n   \"value\": \"velit proident v\"\n  },\n  \"userTo\": {\n   \"value\": \"sint proident Lorem\"\n  },\n  \"active\": false\n },\n {\n  \"id\": \"4d7ae30b-14a2-8c79-0d34-88f17f06c1b5\",\n  \"state\": \"enim laboris incididunt sit elit\",\n  \"userFrom\": {\n   \"value\": \"dolor dolore\"\n  },\n  \"userTo\": {\n   \"value\": \"eu deserunt cill\"\n  },\n  \"active\": false\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/RelationshipRequests",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"state\": \"ipsum veniam tempor Lorem\",\n    \"userFrom\": {\n        \"value\": \"culpa\"\n    },\n    \"userTo\": {\n        \"value\": \"dolore sed est\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/RelationshipRequests",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"RelationshipRequests"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"state\": \"ipsum veniam tempor Lorem\",\n    \"userFrom\": {\n        \"value\": \"culpa\"\n    },\n    \"userTo\": {\n        \"value\": \"dolore sed est\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"urn:uuid:934ea50b-19e0-6959-209c-a4df538a00c2\",\n \"state\": \"fugiat dolor\",\n \"userFrom\": {\n  \"value\": \"minim sed\"\n },\n \"userTo\": {\n  \"value\": \"sed\"\n },\n \"active\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/RelationshipRequests/pending/:id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/RelationshipRequests/pending/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"RelationshipRequests",
+										"pending",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/RelationshipRequests/pending/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"RelationshipRequests",
+												"pending",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"urn:uuid:934ea50b-19e0-6959-209c-a4df538a00c2\",\n \"state\": \"fugiat dolor\",\n \"userFrom\": {\n  \"value\": \"minim sed\"\n },\n \"userTo\": {\n  \"value\": \"sed\"\n },\n \"active\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Relationships",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/Relationships/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Relationships/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Relationships",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"e75509df-b818-2409-da6a-8881516a25f6\",\n \"userFrom\": {\n  \"value\": \"anim consequat qui adipisicing dolor\"\n },\n \"userTo\": {\n  \"value\": \"voluptate\"\n },\n \"listTag\": [\n  \"sit Ut\",\n  \"dolor enim exercitation deserunt\"\n ],\n \"connectionStrength\": 83615539,\n \"relationshipStrength\": -74913482,\n \"relationshipRequest\": {\n  \"value\": \"in veniam officia quis\"\n },\n \"active\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Relationships/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"sed adipisicing\",\n    \"userFrom\": \"id nostrud in occaecat voluptate\",\n    \"userTo\": \"dolor\",\n    \"listTag\": [\n        \"veniam labore\",\n        \"enim dolore cillum reprehenderit culpa\"\n    ],\n    \"connectionStrength\": 6004563,\n    \"relationshipStrength\": -92373423,\n    \"relationshipRequest\": \"nostrud eu\",\n    \"active\": true\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"dolore\",\n    \"userFrom\": \"irure ut\",\n    \"userTo\": \"id est cupidatat\",\n    \"listTag\": [\n        \"Ut labore elit\",\n        \"proident reprehenderit dolore elit\"\n    ],\n    \"connectionStrength\": -18512623,\n    \"relationshipStrength\": 99349415,\n    \"relationshipRequest\": \"officia magna do dolor dolore\",\n    \"active\": false\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Relationships/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Relationships",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"e75509df-b818-2409-da6a-8881516a25f6\",\n \"userFrom\": {\n  \"value\": \"anim consequat qui adipisicing dolor\"\n },\n \"userTo\": {\n  \"value\": \"voluptate\"\n },\n \"listTag\": [\n  \"sit Ut\",\n  \"dolor enim exercitation deserunt\"\n ],\n \"connectionStrength\": 83615539,\n \"relationshipStrength\": -74913482,\n \"relationshipRequest\": {\n  \"value\": \"in veniam officia quis\"\n },\n \"active\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Relationships/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Relationships/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Relationships",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"e75509df-b818-2409-da6a-8881516a25f6\",\n \"userFrom\": {\n  \"value\": \"anim consequat qui adipisicing dolor\"\n },\n \"userTo\": {\n  \"value\": \"voluptate\"\n },\n \"listTag\": [\n  \"sit Ut\",\n  \"dolor enim exercitation deserunt\"\n ],\n \"connectionStrength\": 83615539,\n \"relationshipStrength\": -74913482,\n \"relationshipRequest\": {\n  \"value\": \"in veniam officia quis\"\n },\n \"active\": false\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Relationships/:id/relationships",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships/:id/relationships",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships",
+												":id",
+												"relationships"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Relationships/:id/relationships",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Relationships",
+														":id",
+														"relationships"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"id\": \"urn:uuid:ddffaa3f-4141-4886-b3ad-c539fee84cc4\",\n  \"userFrom\": {\n   \"value\": \"officia in veniam\"\n  },\n  \"userTo\": {\n   \"value\": \"adipisicing anim\"\n  },\n  \"listTag\": [\n   \"ad sed eu\",\n   \"commodo amet aliquip tempor\"\n  ],\n  \"connectionStrength\": -39546730,\n  \"relationshipStrength\": 47286862,\n  \"relationshipRequest\": {\n   \"value\": \"dolor nulla proident consectetur ad\"\n  },\n  \"active\": false\n },\n {\n  \"id\": \"9ff54a71-14b4-3777-5df4-57d2e0890bf9\",\n  \"userFrom\": {\n   \"value\": \"Excepteur nostrud enim\"\n  },\n  \"userTo\": {\n   \"value\": \"eiusmod eu\"\n  },\n  \"listTag\": [\n   \"eiu\",\n   \"Excepteur incididunt\"\n  ],\n  \"connectionStrength\": 77329874,\n  \"relationshipStrength\": 60702438,\n  \"relationshipRequest\": {\n   \"value\": \"pariatur ut sunt\"\n  },\n  \"active\": false\n }\n]"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Relationships/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Relationships/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Relationships",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"e75509df-b818-2409-da6a-8881516a25f6\",\n \"userFrom\": {\n  \"value\": \"anim consequat qui adipisicing dolor\"\n },\n \"userTo\": {\n  \"value\": \"voluptate\"\n },\n \"listTag\": [\n  \"sit Ut\",\n  \"dolor enim exercitation deserunt\"\n ],\n \"connectionStrength\": 83615539,\n \"relationshipStrength\": -74913482,\n \"relationshipRequest\": {\n  \"value\": \"in veniam officia quis\"\n },\n \"active\": false\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Relationships",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Relationships",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Relationships"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"urn:uuid:ddffaa3f-4141-4886-b3ad-c539fee84cc4\",\n  \"userFrom\": {\n   \"value\": \"officia in veniam\"\n  },\n  \"userTo\": {\n   \"value\": \"adipisicing anim\"\n  },\n  \"listTag\": [\n   \"ad sed eu\",\n   \"commodo amet aliquip tempor\"\n  ],\n  \"connectionStrength\": -39546730,\n  \"relationshipStrength\": 47286862,\n  \"relationshipRequest\": {\n   \"value\": \"dolor nulla proident consectetur ad\"\n  },\n  \"active\": false\n },\n {\n  \"id\": \"9ff54a71-14b4-3777-5df4-57d2e0890bf9\",\n  \"userFrom\": {\n   \"value\": \"Excepteur nostrud enim\"\n  },\n  \"userTo\": {\n   \"value\": \"eiusmod eu\"\n  },\n  \"listTag\": [\n   \"eiu\",\n   \"Excepteur incididunt\"\n  ],\n  \"connectionStrength\": 77329874,\n  \"relationshipStrength\": 60702438,\n  \"relationshipRequest\": {\n   \"value\": \"pariatur ut sunt\"\n  },\n  \"active\": false\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Relationships",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userFrom\": {\n        \"value\": \"commodo\"\n    },\n    \"userTo\": {\n        \"value\": \"enim culpa\"\n    },\n    \"listTag\": [\n        \"cupidatat quis dolore\",\n        \"mollit sit nulla sed\"\n    ],\n    \"connectionStrength\": -68867427,\n    \"relationshipStrength\": 54544539,\n    \"relationshipRequest\": {\n        \"value\": \"sit\"\n    },\n    \"active\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Relationships",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Relationships"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"userFrom\": {\n        \"value\": \"Lorem ipsum\"\n    },\n    \"userTo\": {\n        \"value\": \"labore ut consectetur Duis mollit\"\n    },\n    \"listTag\": [\n        \"elit cillum esse\",\n        \"laborum\"\n    ],\n    \"connectionStrength\": -92226360,\n    \"relationshipStrength\": 7140393,\n    \"relationshipRequest\": {\n        \"value\": \"occaecat minim nostrud sint mollit\"\n    },\n    \"active\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Relationships",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Relationships"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"e75509df-b818-2409-da6a-8881516a25f6\",\n \"userFrom\": {\n  \"value\": \"anim consequat qui adipisicing dolor\"\n },\n \"userTo\": {\n  \"value\": \"voluptate\"\n },\n \"listTag\": [\n  \"sit Ut\",\n  \"dolor enim exercitation deserunt\"\n ],\n \"connectionStrength\": 83615539,\n \"relationshipStrength\": -74913482,\n \"relationshipRequest\": {\n  \"value\": \"in veniam officia quis\"\n },\n \"active\": false\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/mdrs/Users/:id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"2a89680c-f7d1-6eb3-b28e-31e5ad98bbf9\",\n \"name\": \"eu non ut\",\n \"email\": \"cupidatat tempor ut aute\",\n \"password\": \"ullamco cillum\",\n \"birthdate\": \"Lorem dolore qui aliqua tempor\",\n \"phoneNumber\": \"labor\",\n \"linkedin\": \"sit aliquip veniam enim in\",\n \"facebook\": \"eiusmod ut magna\",\n \"active\": true,\n \"mood\": \"labore elit\",\n \"tags\": [\n  \"si\",\n  \"dolor aliqua\"\n ]\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Users/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"idValue\": \"incididunt voluptate in culpa\",\n    \"name\": \"ut tempor\",\n    \"email\": \"et in aute nulla\",\n    \"password\": \"exercitation sint veniam magna\",\n    \"birthdate\": \"dolore\",\n    \"phoneNumber\": \"Excepteur exercitation do commodo\",\n    \"linkedin\": \"exercitation elit ullamco sunt ipsum\",\n    \"facebook\": \"quis qui\",\n    \"active\": true,\n    \"mood\": \"qui fugiat ad adipisicing\",\n    \"tags\": [\n        \"mollit\",\n        \"Duis sint cillum\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"idValue\": \"veniam pariatur\",\n    \"name\": \"Ut deserunt\",\n    \"email\": \"tempor officia\",\n    \"password\": \"nostr\",\n    \"birthdate\": \"dolore sed culpa voluptate consequat\",\n    \"phoneNumber\": \"qui occaecat dolore nisi et\",\n    \"linkedin\": \"incididunt qui enim adipisicing\",\n    \"facebook\": \"quis ut\",\n    \"active\": false,\n    \"mood\": \"id est sunt\",\n    \"tags\": [\n        \"cupidatat dolor proident laborum do\",\n        \"veniam\"\n    ]\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"2a89680c-f7d1-6eb3-b28e-31e5ad98bbf9\",\n \"name\": \"eu non ut\",\n \"email\": \"cupidatat tempor ut aute\",\n \"password\": \"ullamco cillum\",\n \"birthdate\": \"Lorem dolore qui aliqua tempor\",\n \"phoneNumber\": \"labor\",\n \"linkedin\": \"sit aliquip veniam enim in\",\n \"facebook\": \"eiusmod ut magna\",\n \"active\": true,\n \"mood\": \"labore elit\",\n \"tags\": [\n  \"si\",\n  \"dolor aliqua\"\n ]\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Users/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"2a89680c-f7d1-6eb3-b28e-31e5ad98bbf9\",\n \"name\": \"eu non ut\",\n \"email\": \"cupidatat tempor ut aute\",\n \"password\": \"ullamco cillum\",\n \"birthdate\": \"Lorem dolore qui aliqua tempor\",\n \"phoneNumber\": \"labor\",\n \"linkedin\": \"sit aliquip veniam enim in\",\n \"facebook\": \"eiusmod ut magna\",\n \"active\": true,\n \"mood\": \"labore elit\",\n \"tags\": [\n  \"si\",\n  \"dolor aliqua\"\n ]\n}"
+										}
+									]
+								},
+								{
+									"name": "/mdrs/Users/:id/hard",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users/:id/hard",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users",
+												":id",
+												"hard"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/mdrs/Users/:id/hard",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"mdrs",
+														"Users",
+														":id",
+														"hard"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "f39cb066-2e85-ce89-ca4a-b41c109b0693",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"2a89680c-f7d1-6eb3-b28e-31e5ad98bbf9\",\n \"name\": \"eu non ut\",\n \"email\": \"cupidatat tempor ut aute\",\n \"password\": \"ullamco cillum\",\n \"birthdate\": \"Lorem dolore qui aliqua tempor\",\n \"phoneNumber\": \"labor\",\n \"linkedin\": \"sit aliquip veniam enim in\",\n \"facebook\": \"eiusmod ut magna\",\n \"active\": true,\n \"mood\": \"labore elit\",\n \"tags\": [\n  \"si\",\n  \"dolor aliqua\"\n ]\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": \"8e58657f-f883-89a6-4877-5c4a859b182e\",\n  \"name\": \"magna tempor proident exercitation\",\n  \"email\": \"enim ex co\",\n  \"password\": \"amet deserunt\",\n  \"birthdate\": \"eiusmod laboris\",\n  \"phoneNumber\": \"nostrud tempor Duis quis\",\n  \"linkedin\": \"nulla aliquip eu\",\n  \"facebook\": \"aliqua exercitation\",\n  \"active\": false,\n  \"mood\": \"consectetur tempor ad sint culpa\",\n  \"tags\": [\n   \"et sunt ullamco occaecat\",\n   \"et Ut\"\n  ]\n },\n {\n  \"id\": \"urn:uuid:eb948409-ca9f-ea48-0237-d5f65e9bac40\",\n  \"name\": \"veniam adipisicing quis nostrud\",\n  \"email\": \"ad sint quis enim\",\n  \"password\": \"est\",\n  \"birthdate\": \"cupidatat tempor veniam\",\n  \"phoneNumber\": \"fugiat quis dolor labore incididunt\",\n  \"linkedin\": \"magna in cupidatat dolore incididunt\",\n  \"facebook\": \"commodo Duis laborum Ut\",\n  \"active\": false,\n  \"mood\": \"magna non proi\",\n  \"tags\": [\n   \"dolore\",\n   \"eu Du\"\n  ]\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Users",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idValue\": \"incididunt voluptate in culpa\",\n    \"name\": \"ut tempor\",\n    \"email\": \"et in aute nulla\",\n    \"password\": \"exercitation sint veniam magna\",\n    \"birthdate\": \"dolore\",\n    \"phoneNumber\": \"Excepteur exercitation do commodo\",\n    \"linkedin\": \"exercitation elit ullamco sunt ipsum\",\n    \"facebook\": \"quis qui\",\n    \"active\": true,\n    \"mood\": \"qui fugiat ad adipisicing\",\n    \"tags\": [\n        \"mollit\",\n        \"Duis sint cillum\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"idValue\": \"veniam pariatur\",\n    \"name\": \"Ut deserunt\",\n    \"email\": \"tempor officia\",\n    \"password\": \"nostr\",\n    \"birthdate\": \"dolore sed culpa voluptate consequat\",\n    \"phoneNumber\": \"qui occaecat dolore nisi et\",\n    \"linkedin\": \"incididunt qui enim adipisicing\",\n    \"facebook\": \"quis ut\",\n    \"active\": false,\n    \"mood\": \"id est sunt\",\n    \"tags\": [\n        \"cupidatat dolor proident laborum do\",\n        \"veniam\"\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"2a89680c-f7d1-6eb3-b28e-31e5ad98bbf9\",\n \"name\": \"eu non ut\",\n \"email\": \"cupidatat tempor ut aute\",\n \"password\": \"ullamco cillum\",\n \"birthdate\": \"Lorem dolore qui aliqua tempor\",\n \"phoneNumber\": \"labor\",\n \"linkedin\": \"sit aliquip veniam enim in\",\n \"facebook\": \"eiusmod ut magna\",\n \"active\": true,\n \"mood\": \"labore elit\",\n \"tags\": [\n  \"si\",\n  \"dolor aliqua\"\n ]\n}"
+								}
+							]
+						},
+						{
+							"name": "/mdrs/Users/search/:email",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mdrs/Users/search/:email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mdrs",
+										"Users",
+										"search",
+										":email"
+									],
+									"variable": [
+										{
+											"key": "email",
+											"value": "tempor",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/mdrs/Users/search/:email",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"mdrs",
+												"Users",
+												"search",
+												":email"
+											],
+											"variable": [
+												{
+													"key": "email",
+													"value": "tempor",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"2a89680c-f7d1-6eb3-b28e-31e5ad98bbf9\",\n \"name\": \"eu non ut\",\n \"email\": \"cupidatat tempor ut aute\",\n \"password\": \"ullamco cillum\",\n \"birthdate\": \"Lorem dolore qui aliqua tempor\",\n \"phoneNumber\": \"labor\",\n \"linkedin\": \"sit aliquip veniam enim in\",\n \"facebook\": \"eiusmod ut magna\",\n \"active\": true,\n \"mood\": \"labore elit\",\n \"tags\": [\n  \"si\",\n  \"dolor aliqua\"\n ]\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}

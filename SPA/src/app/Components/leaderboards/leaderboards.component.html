@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <h2 class="center">Leaderboards</h2>
+    <details>
+      <summary>By Network Dimension</summary>
+      <div class="card">
+        <div class="card-body">
+          <ul class="tags">
+            <div>
+
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Network Dimension</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let u of this.allByNetworkDimension; index as i">
+                  <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{u.name}}</td>
+                    <td>{{u.count}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary>By Network Fortress</summary>
+      <div class="card">
+        <div class="card-body">
+          <ul class="tags">
+            <div>
+
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Networt Fortress</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let u of this.allByNetworkFortress; index as i">
+                  <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{u.name}}</td>
+                    <td>{{u.count}}</td>
+                  </tr>
+                </tbody>
+              </table>
+                
+            </div>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>

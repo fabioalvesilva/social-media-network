@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <h2 class="center">Tags</h2>
+  <details>
+    <summary>My tags</summary>
+    <div class="card">
+      <div class="card-body">
+        <ul class="tags">
+          <div>
+            <angular-tag-cloud [data]="getCloudMyTags()" [width]="options.width" [height]="options.height"
+              [overflow]="options.overflow"></angular-tag-cloud>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </details>
+  <details>
+    <summary>My relationships</summary>
+    <div class="card">
+      <div class="card-body">
+        <ul class="tags">
+          <div>
+            <angular-tag-cloud [data]="getCloudMyRelationships()" [width]="options.width" [height]="options.height"
+              [overflow]="options.overflow"></angular-tag-cloud>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </details>
+  <details>
+    <summary>All Users</summary>
+    <div class="card">
+      <div class="card-body">
+        <ul class="tags">
+          <div>
+            <angular-tag-cloud [data]="getCloudAllUsers()" [width]="options.width" [height]="options.height"
+              [overflow]="options.overflow"></angular-tag-cloud>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </details>
+  <details>
+    <summary>All Relationships</summary>
+    <div class="card">
+      <div class="card-body">
+        <ul class="tags">
+          <div>
+            <angular-tag-cloud [data]="getCloudAllRelationships()" [width]="options.width" [height]="options.height"
+              [overflow]="options.overflow"></angular-tag-cloud>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </details>
+</div>

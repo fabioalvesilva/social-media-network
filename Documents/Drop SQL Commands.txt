@@ -1,0 +1,45 @@
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[__EFMigrationsHistory]') AND type in (N'U'))
+DROP TABLE [dbo].[__EFMigrationsHistory]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Categories]') AND type in (N'U'))
+DROP TABLE [dbo].[Categories]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Families]') AND type in (N'U'))
+DROP TABLE [dbo].[Families]
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[IntroductionRequests]') AND type in (N'U'))
+DROP TABLE [dbo].[IntroductionRequests]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Introduction]') AND type in (N'U'))
+DROP TABLE [dbo].[Introduction]
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Products]') AND type in (N'U'))
+DROP TABLE [dbo].[Products]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Relationships_ListTag]') AND type in (N'U'))
+DROP TABLE [dbo].[Relationships_ListTag]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Relationships]') AND type in (N'U'))
+DROP TABLE [dbo].[Relationships]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Users_tagsList]') AND type in (N'U'))
+DROP TABLE [dbo].[Users_tagsList]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Users]') AND type in (N'U'))
+DROP TABLE [dbo].[Users]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RelationshipRequests]') AND type in (N'U'))
+DROP TABLE [dbo].[RelationshipRequests]
+GO

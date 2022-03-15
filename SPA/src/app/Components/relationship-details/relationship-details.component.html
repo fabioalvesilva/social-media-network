@@ -1,0 +1,64 @@
+<!-- Modal -->
+<div class="modal fade" id="relationshipModal" tabindex="-1" role="dialog" aria-labelledby="relationshipModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Your relationship with {{this.relationship.userToName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-0">
+          <div *ngIf="relationUpdated" class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            {{this.successMessage}}
+          </div>
+          <div *ngIf="!relationUpdated && relationUpdated != null" class="alert alert-warning d-flex align-items-center">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+            {{this.errorMessage}}
+          </div>
+        </div>
+          <div class="row g-0">
+            <h5>Who is {{this.relationship.userToName}}?</h5>
+            <div class="btn-group">
+              <select class="form-select" ngModel name="connectionStrength" #connectionStrength>
+                <option value="" disabled selected>Select your connection strength</option>
+                <option value="1">Family</option>
+                <option value="2">Friends</option>
+                <option value="3">Unknown</option>
+              </select>
+          </div>
+          <div class="row g-0 mt-4">
+            <h5>Tags ({{this.relationship.listTag.length}})</h5>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let tag of this.relationship.listTag">
+                <div class="row">
+                  <div class="col">
+                    {{tag}}
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-danger btn-sm rounded-0" type="button" (click)="removeTag(tag)" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label>Tag your interests</label>
+            <input type="text" class="form-control rounded" name="tag_" #tag />
+          </div>
+          <div class="d-grid gap-2 mb-10">
+            <button type="button" id="addtag" (click)="addTag(tag.value); tag.value='';" class="btn btn-primary">Adicionar Tag</button>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="update(connectionStrength.value)" class="btn btn-primary" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="row h-75">
+            <div class="col-sm-12">
+                <div class="bg-picture text-center">
+                    <div class="bg-picture-overlay"></div>
+                    <div class="profile-info-name">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="thumb-lg rounded-circle img-thumbnail mb-3" width="15%" alt="profile-image">
+                        <h3 class="text-white">{{this.user.name}}</h3>
+                    </div>
+                </div>
+                <!--/ meta -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="tab-content profile-tab-content">
+                    <div class="tab-pane active" id="home-2">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- Personal-Information -->
+                                <div class="panel panel-default panel-fill">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Personal Information</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="about-info-p">
+                                            <strong>Mood</strong>
+                                            <br>
+                                            <p class="text-muted">{{this.user.mood}}</p>
+                                        </div>
+                                        <div class="about-info-p">
+                                            <strong>Linkedin</strong>
+                                            <br>
+                                            <p class="text-muted">@{{this.user.linkedin}}</p>
+                                        </div>
+                                        <div class="about-info-p">
+                                            <strong>Facebook</strong>
+                                            <br>
+                                            <p class="text-muted">@{{this.user.facebook}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Personal-Information -->
+                                <div class="panel panel-default panel-fill">
+                                    <div class="panel-heading">
+                                        <span class="panel-title">Network Size Up to 3rd level
+                                            <span class="badge badge-pill badge-warning notification ml-3">{{friendsThirdLevel.length}}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <!-- Personal-Information -->
+                                <div class="panel panel-default panel-fill">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Posts</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <app-post-list [userPostsFlag] = "true" [userPostsId]="this.userId"></app-post-list>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

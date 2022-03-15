@@ -1,0 +1,83 @@
+image: mcr.microsoft.com/dotnet/sdk:5.0
+definitions:
+  pipelines:
+    default:
+      - step: &dotnet-test
+          name: Build and Test
+          caches:
+            - dotnetcore
+          script:
+            - dotnet restore MasterDataRedeSocial/MasterDataRedeSocial.sln 
+            - dotnet build MasterDataRedeSocial/MasterDataRedeSocial.sln 
+            - dotnet test MasterDataRedeSocialTests/MasterDataRedeSocialTests.csproj 
+
+      - step: &ng-test
+        name: Run ng tests
+        script:
+          #install node
+          - apt-get update
+          - apt-get -y install curl gnupg
+          - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+          - apt-get -y install nodejs
+          #install chrome
+          - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+          - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' 
+          - apt-get update
+          - apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont --no-install-recommends 
+          - rm -rf /var/lib/apt/lists/*
+          #install npm dependencies and run tests
+          - pushd ./SPA/my-angular-app
+          - npm install
+          - npm install -g @angular/cli
+          - ng test --watch=false --browsers=ChromeHeadlessNoSandbox
+          - popd
+
+      - step: &npm-test
+        name: Run ng tests
+        script:
+          #install node
+          - apt-get update
+          - apt-get -y install curl gnupg
+          - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+          - apt-get -y install nodejs
+          - npm install
+          - npm build
+          #- npm test 
+
+pipelines:
+  branches:
+    master:
+      - parallel:
+        - step:
+            image: mcr.microsoft.com/dotnet/sdk:5.0
+            name: MasterDataRedeSocial 
+            caches:
+              - dotnetcore
+            script:
+              - cd MasterDataRedeSocial
+              - dotnet restore
+              - dotnet build
+              - cd ../MasterDataRedeSocialTests
+              - dotnet test
+              - cd ..
+        - step:
+            image: node:latest
+            name: SPA 
+            caches:
+              - node
+            script:
+              - cd SPA
+              - npm install -g @angular/cli
+              - npm install
+              - ng build
+              # - ng test
+        - step:
+            image: node:latest
+            name: MasterDataPost 
+            caches:
+              - node
+            script:
+              - cd MasterDataPost 
+              - npm install
+              - npm build
+             #- npm test 

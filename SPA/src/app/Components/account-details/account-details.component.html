@@ -1,0 +1,151 @@
+<div class="container-fluid">
+  <div class="row">
+    <h2>Account Details</h2>
+  </div>
+  <div class="row">
+    <h4>Mood</h4>
+  </div>
+  <div class="border-top"></div>
+  <div class="row mt-4">
+    <form #editMoodForm="ngForm" (ngSubmit)="updateMood(editMoodForm)">
+      <div class="row">
+        <div *ngIf="!moodUpdated && moodUpdated != null" class="alert alert-danger col">
+          <svg class="bi flex-shrink-0 me-2" width="25" height="25" role="img" aria-label="Warning:">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg>
+          {{this.errorMoodMessage}}
+        </div>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col">
+          <label class="visually-hidden" for="mood">How's your Mood today?'</label>
+          <select class="form-select" ngModel name="mood" id="mood">
+            <option value="" disabled selected>Select your mood</option>
+            <option value="JOYFUL">JOYFUL</option>
+            <option value="DISTRESSED">DISTRESSED</option>
+            <option value="HOPEFUL">HOPEFUL</option>
+            <option value="FEARFUL">FEARFUL</option>
+            <option value="RELIEVE">RELIEVE</option>
+            <option value="DISAPPOINTED">DISAPPOINTED</option>
+            <option value="PROUD">PROUD</option>
+            <option value="REMORSEFUL">REMORSEFUL</option>
+            <option value="GRATEFUL">GRATEFUL</option>
+            <option value="ANGRY">ANGRY</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+          </select>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Change</button>
+        </div>
+        <div class="col"></div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <h4>Details</h4>
+  </div>
+  <div class="border-top"></div>
+  <form #editDetailsForm="ngForm" (ngSubmit)="updateProfile(editDetailsForm)">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="row">
+          <div *ngIf="detailsUpdated" class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+            {{this.successMessage}}
+          </div>
+          <div *ngIf="!detailsUpdated && detailsUpdated != null" class="alert alert-warning d-flex align-items-center">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+            {{this.errorMessage}}
+          </div>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col">
+            <input type="text" id="name" class="form-control" aria-label="Name" name="name" [ngModel]="user.name">
+          </div>
+          <div class="col">
+            <fieldset disabled>
+              <input type="email" id="email" class="form-control" aria-label="Email" name="email" [ngModel]="user.email">
+            </fieldset>
+          </div>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col">
+            <input type="text" id="birthdate" class="form-control" aria-label="Birthdate" name="birthdate" [ngModel]="user.birthdate">
+          </div>
+          <div class="col">
+            <input type="text" id="phoneNumber" class="form-control" aria-label="Phone" name="phoneNumber" [ngModel]="user.phoneNumber">
+          </div>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col">
+            <label class="visually-hidden">Facebook</label>
+            <div class="input-group">
+              <div class="input-group-text bg-light">facebook.com/</div>
+              <input type="text" class="form-control" id="facebook" name="facebook" [ngModel]="user.facebook">
+            </div>
+          </div>
+          <div class="col">
+            <label class="visually-hidden">Linkedin</label>
+            <div class="input-group">
+              <div class="input-group-text bg-light">linkedin.com/</div>
+              <input type="text" class="form-control" id="linkedin" name="linkedin" [ngModel]="user.linkedin">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4>Your Tags ({{this.user.tags.length}}) </h4>
+    </div>
+    <div class="border-top"></div>
+    <div class="row g-3 mt-2">
+      <div class="col">
+        <input type="text" class="form-control" name="tag_" #tag placeholder="Add a Tag here" />
+      </div>
+      <div class="col">
+        <button type="button" id="addtag" (click)="addTag(tag.value); tag.value='';" class="btn btn-primary">Adicionar Tag</button>
+      </div>
+    </div>
+    <div class="row g-0 mt-4">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let tag of this.user.tags">
+          <div class="row">
+            <div class="bg-light col-10">
+              <span class="align-middle"><strong>{{tag}}</strong></span>
+            </div>
+            <div class="col-2">
+              <span class="align-middle"><button class="btn btn-danger btn-sm rounded-2" type="button" (click)="removeTag(tag)" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button></span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row g-3 mt-2">
+      <div class="col">
+        <button type="submit" class="btn btn-warning">Edit profile</button>
+      </div>
+    </div>
+  </form>
+  <div class="row g-3 mt-4">
+    <h4>Deactivate account</h4>
+  </div>
+  <div class="border-top"></div>
+  <div class="row g-3 mt-1">
+    <div class="col">
+      <div class="alert alert-warning" role="alert">
+        Deleting an account is permanent. Once your Graph4Social account is permanently deleted, you can’t restore your account.
+        Personal data is deleted from all Graph4Social account services.
+      </div>
+    </div>
+  </div>
+  <div class="row g-3">
+    <div class="col">
+      <button type="button" (click)="this.deactivateAccount()" class="btn btn-danger">Deactivate</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "45f95d30-b0ab-486a-bf59-7e8b9ff0afb1",
+		"name": "Prolog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

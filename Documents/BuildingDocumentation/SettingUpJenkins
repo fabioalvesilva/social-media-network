@@ -1,0 +1,25 @@
+Setting up locally:
+_____________
+Open docker
+
+Run command: 
+    docker run -p 8080:8080 -p 50000:50000 -v ~/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+
+It will prompt a password like 253cba9c41cc412784c9833afa7eed72 
+
+go to defined port  -> in thos case 8080
+
+
+ perform the configuration - inatll plugins 
+
+ define admin password
+
+ admin
+ pwd
+    lapr5
+        email@email.com
+_____________
+
+http://localhost:8080/
+

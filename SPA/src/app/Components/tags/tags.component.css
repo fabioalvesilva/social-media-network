@@ -1,0 +1,224 @@
+
+html,
+.root {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+}
+
+body {
+  font: menu;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 0;
+  margin: 0;
+  font: 12px/1.5 'PT Sans', serif;
+  margin: 25px;
+}
+section {
+  padding-top: 4rem;
+  width: 50%;
+  margin: auto;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+details[open] summary ~ * {
+  animation: open 0.3s ease-in-out;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  width: 100%;
+  padding: 0.5rem 0;
+  border-top: 1px solid black;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 300;
+  list-style: none;
+}
+
+details summary:after {
+  content: "+";
+  color: black;
+  position: absolute;
+  font-size: 1.75rem;
+  line-height: 0;
+  margin-top: 0.75rem;
+  right: 0;
+  font-weight: 200;
+  transform-origin: center;
+  transition: 200ms linear;
+}
+details[open] summary:after {
+  transform: rotate(45deg);
+  font-size: 2rem;
+}
+details summary {
+  outline: 0;
+}
+details p {
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  padding-top: 1rem;
+}
+
+.tags {
+  list-style: none;
+  margin: 0;
+  overflow: hidden; 
+  padding: 0;
+}
+
+.tags li {
+  float: left; 
+}
+
+.tag {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: #999;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #eee;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover {
+  background-color: cadetblue;
+  color: white;
+}
+
+.tag:hover::after {
+   border-left-color: cadetblue; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.cloud {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  line-height: 2.75rem;
+  width: 450px;
+}
+
+ul.cloud a {
+  /*   
+  Not supported by any browser at the moment :(
+  --size: attr(data-weight number); 
+  */
+  --size: 4;
+  --color: #a33;
+  color: var(--color);
+  font-size: calc(var(--size) * 0.25rem + 0.5rem);
+  display: block;
+  padding: 0.125rem 0.25rem;
+  position: relative;
+  text-decoration: none;
+  /* 
+  For different tones of a single color
+  opacity: calc((15 - (9 - var(--size))) / 15); 
+  */
+}
+
+ul.cloud { --size: 1*a[count]; }
+
+ul[data-show-value] a::after {
+  content: " (" attr(data-weight) ")";
+  font-size: 1rem;
+}
+
+ul.cloud li:nth-child(2n+1) a { --color: #181; }
+ul.cloud li:nth-child(3n+1) a { --color: #33a; }
+ul.cloud li:nth-child(4n+1) a { --color: #c38; }
+
+ul.cloud a:focus {
+  outline: 1px dashed;
+}
+
+ul.cloud a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background: var(--color);
+  transform: translate(-50%, 0);
+  opacity: 0.15;
+  transition: width 0.25s;
+}
+
+ul.cloud a:focus::before,
+ul.cloud a:hover::before {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion) {
+  ul.cloud * {
+    transition: none !important;
+  }
+}

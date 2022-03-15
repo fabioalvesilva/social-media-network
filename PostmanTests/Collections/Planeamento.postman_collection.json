@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "d9c1667a-878a-4f09-af7b-232ffa2f10ad",
+		"name": "Planeamento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create_USERA",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"moods = pm.environment.get(\"TTAGS\");",
+							"tags = moods;",
+							"pm.environment.set(\"TTAGS\",tags);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_createUser?mood=REMORSEFUL&tags={{USER_TAGS}}&userName=rrre",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_createUser"
+					],
+					"query": [
+						{
+							"key": "mood",
+							"value": "REMORSEFUL"
+						},
+						{
+							"key": "tags",
+							"value": "{{USER_TAGS}}"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "userName",
+							"value": "rrre"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_ReqExample",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"moods = pm.environment.get(\"TTAGS\");",
+							"tags = moods;",
+							"pm.environment.set(\"TTAGS\",tags);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": 3,\n        \"nome\": \"ze manel\",\n        \"tags\": [\"ze\", \"manel\"]\n    },\n    {\n        \"id\": 4,\n        \"nome\": \"ze manel\",\n        \"tags\": [\"ze\", \"manel\"]\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_createUsers_example",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_createUsers_example"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"moods = pm.environment.get(\"TTAGS\");",
+							"tags = moods;",
+							"pm.environment.set(\"TTAGS\",tags);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"mood\": \"REMORSEFUL\",\n        \"name\": \"CArlos\",\n        \"tags\": [\"ze\", \"manel\"]\n    },\n    {\n        \"mood\": \"REMORSEFUL\",\n        \"name\": \"Moutinho\",\n        \"tags\": [\"ze\", \"manel\"]\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_createUsers",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_createUsers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Connections",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"moods = pm.environment.get(\"TTAGS\");",
+							"tags = moods;",
+							"pm.environment.set(\"TTAGS\",tags);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"userFrom\": \"CArlos\",\n        \"userTo\": \"Moutinho\",\n        \"connectionStrength\": 1,\n        \"relationshipStrength\": 2\n    },\n    {\n        \"userFrom\": \"Moutinho\",\n        \"userTo\": \"CArlos\",\n        \"connectionStrength\": 1,\n        \"relationshipStrength\": 2\n    }\n]\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_createConnections",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_createConnections"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Groups",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"moods = pm.environment.get(\"TTAGS\");",
+							"tags = moods;",
+							"pm.environment.set(\"TTAGS\",tags);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"category\": \"Sarah Silva\",\n        \"synonyms\": [\"Putain\", \"Q merde\", \"Dispo\", \"Sarah Silva\"]\n    },\n    {\n        \"category\": \"Ze Manel\",\n        \"synonyms\": [\"Manel\", \"Ze\", \"Ze Manel\"]\n    }\n\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_createTags",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_createTags"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shortest_Path",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_shortest_path?userFrom=Sarah Silva&userTo=Pedro Mourao",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_shortest_path"
+					],
+					"query": [
+						{
+							"key": "userFrom",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "userTo",
+							"value": "Pedro Mourao"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Safest_Path",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_safest_path?userFrom=Sarah Silva&userTo=Pedro Mourao&value=4",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_safest_path"
+					],
+					"query": [
+						{
+							"key": "userFrom",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "userTo",
+							"value": "Pedro Mourao"
+						},
+						{
+							"key": "value",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Strongest_Path",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_strongest_path?userFrom=Sarah Silva&userTo=Dario Ornelas",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_strongest_path"
+					],
+					"query": [
+						{
+							"key": "userFrom",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "userTo",
+							"value": "Dario Ornelas"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Groups",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://vsgate-http.dei.isep.ipp.pt:10558/handle_request_user_groups?user=Sarah Silva&tagA=travel&minNumUsers=2&numCommonTags=2",
+					"protocol": "http",
+					"host": [
+						"vsgate-http",
+						"dei",
+						"isep",
+						"ipp",
+						"pt"
+					],
+					"port": "10558",
+					"path": [
+						"handle_request_user_groups"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "value",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "tagA",
+							"value": "travel"
+						},
+						{
+							"key": "minNumUsers",
+							"value": "2"
+						},
+						{
+							"key": "numCommonTags",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Strongest_Path_WithCStrength",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_strongest_path_withCS?userFrom=Sarah Silva&userTo=Pedro Mourao",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_strongest_path_withCS"
+					],
+					"query": [
+						{
+							"key": "userFrom",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "userTo",
+							"value": "Pedro Mourao"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Strongest_Path_WithCSAndRS",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_strongest_path_withRS?userFrom=Sarah Silva&userTo=Pedro Mourao",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_strongest_path_withRS"
+					],
+					"query": [
+						{
+							"key": "userFrom",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "userTo",
+							"value": "Pedro Mourao"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Strongest_Path_WithMood",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_PLANEAMENTO}}handle_request_strongest_path_withMood?userFrom=Sarah Silva&userTo=Pedro Mourao",
+					"host": [
+						"{{URL_PLANEAMENTO}}handle_request_strongest_path_withMood"
+					],
+					"query": [
+						{
+							"key": "userFrom",
+							"value": "Sarah Silva"
+						},
+						{
+							"key": "userTo",
+							"value": "Pedro Mourao"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
